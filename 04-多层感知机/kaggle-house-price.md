@@ -102,7 +102,7 @@ def download_all():  #@save
 这便于每个人都可以学习哪些方法起作用，哪些没有起作用。
 如果我们想参加Kaggle比赛，首先需要注册一个账户（见 [图](kaggle-house-price.md#fig_kaggle)）。
 
-![Kaggle网站](../图片/kaggle.png)
+![Kaggle网站](../img/kaggle.png)
 
 *Kaggle网站*
 
@@ -112,7 +112,7 @@ def download_all():  #@save
 
 >https://www.kaggle.com/c/house-prices-advanced-regression-techniques
 
-![房价预测比赛页面](../图片/house-pricing.png)
+![房价预测比赛页面](../img/house-pricing.png)
 
 *房价预测比赛页面*
 
@@ -427,7 +427,7 @@ train_and_pred(train_features, test_features, train_labels, test_data,
 * 点击页面底部虚线框中的“Upload Submission File”按钮，选择要上传的预测文件。
 * 点击页面底部的“Make Submission”按钮，即可查看结果。
 
-![向Kaggle提交数据](../图片/kaggle-submit2.png)
+![向Kaggle提交数据](../img/kaggle-submit2.png)
 
 *向Kaggle提交数据*
 

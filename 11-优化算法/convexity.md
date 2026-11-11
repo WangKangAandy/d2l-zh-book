@@ -33,7 +33,7 @@ $$\lambda  a + (1-\lambda)  b \in \mathcal{X} \text{ 当 } a, b \in \mathcal{X}.
 这听起来有点抽象，那我们来看一下 [图](convexity.md#fig_pacman)里的例子。
 第一组存在不包含在集合内部的线段，所以该集合是非凸的，而另外两组则没有这样的问题。
 
-![第一组是非凸的，另外两组是凸的。](../图片/pacman.svg)
+![第一组是非凸的，另外两组是凸的。](../img/pacman.svg)
 
 *第一组是非凸的，另外两组是凸的。*
 
@@ -46,7 +46,7 @@ $$\lambda  a + (1-\lambda)  b \in \mathcal{X} \text{ 当 } a, b \in \mathcal{X}.
 所以连接$a$和$b$的线段包含在$\mathcal{X}$和$\mathcal{Y}$中。
 鉴于此，它们也需要包含在$\mathcal {X} \cap \mathcal{Y}$中，从而证明我们的定理。
 
-![两个凸集的交集是凸的。](../图片/convex-intersect.svg)
+![两个凸集的交集是凸的。](../img/convex-intersect.svg)
 
 *两个凸集的交集是凸的。*
 
@@ -60,7 +60,7 @@ $$\lambda  a + (1-\lambda)  b \in \mathcal{X} \text{ 当 } a, b \in \mathcal{X}.
 在 [图](convexity.md#fig_nonconvex)中连接$a$和$b$的线段需要包含一部分既不在$\mathcal{X}$也不在$\mathcal{Y}$中。
 因此线段也不在$\mathcal{X} \cup \mathcal{Y}$中，因此证明了凸集的并集不一定是凸的，即*非凸*（nonconvex）的。
 
-![两个凸集的并集不一定是凸的。](../图片/nonconvex.svg)
+![两个凸集的并集不一定是凸的。](../img/nonconvex.svg)
 
 *两个凸集的并集不一定是凸的。*
 
@@ -309,7 +309,7 @@ $$\mathrm{Proj}_\mathcal{X}(\mathbf{x}) = \mathop{\mathrm{argmin}}_{\mathbf{x}' 
 
 它是$\mathcal{X}$中离$\mathbf{X}$最近的点。
 
-![Convex Projections.](../图片/projections.svg)
+![Convex Projections.](../img/projections.svg)
 
 *Convex Projections.*
 

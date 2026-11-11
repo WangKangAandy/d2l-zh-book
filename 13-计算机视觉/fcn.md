@@ -22,7 +22,7 @@ from torch.nn import functional as F
 如 [图](fcn.md#fig_fcn)所示，全卷积网络先使用卷积神经网络抽取图像特征，然后通过$1\times 1$卷积层将通道数变换为类别个数，最后在 [转置卷积](transposed-conv.md#sec_transposed_conv)中通过转置卷积层将特征图的高和宽变换为输入图像的尺寸。
 因此，模型输出与输入图像的高和宽相同，且最终输出通道包含了该空间位置像素的类别预测。
 
-![全卷积网络](../图片/fcn.svg)
+![全卷积网络](../img/fcn.svg)
 
 *全卷积网络*
 
@@ -109,7 +109,7 @@ conv_trans.weight.data.copy_(bilinear_kernel(3, 3, 4));
 读取图像`X`，将上采样的结果记作`Y`。为了打印图像，我们需要调整通道维的位置。
 
 ```python
-img = torchvision.transforms.ToTensor()(d2l.Image.open('../图片/catdog.jpg'))
+img = torchvision.transforms.ToTensor()(d2l.Image.open('../img/catdog.jpg'))
 X = img.unsqueeze(0)
 Y = conv_trans(X)
 out_img = Y[0].permute(1, 2, 0).detach()

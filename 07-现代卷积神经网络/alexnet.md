@@ -25,7 +25,7 @@
 
 有趣的是，在网络的最底层，模型学习到了一些类似于传统滤波器的特征抽取器。 [图](alexnet.md#fig_filters)是从AlexNet论文 [Krizhevsky.Sutskever.Hinton.2012](../17-参考文献/zreferences.md#bib-krizhevsky-sutskever-hinton-2012)复制的，描述了底层图像特征。
 
-![AlexNet第一层学习到的特征抽取器。](../图片/filters.png)
+![AlexNet第一层学习到的特征抽取器。](../img/filters.png)
 
 *AlexNet第一层学习到的特征抽取器。*
 
@@ -70,7 +70,7 @@ AlexNet使用了8层卷积神经网络，并以很大的优势赢得了2012年Im
 AlexNet和LeNet的架构非常相似，如 [图](alexnet.md#fig_alexnet)所示。
 注意，本书在这里提供的是一个稍微精简版本的AlexNet，去除了当年需要两个小型GPU同时运算的设计特点。
 
-![从LeNet（左）到AlexNet（右）](../图片/alexnet.svg)
+![从LeNet（左）到AlexNet（右）](../img/alexnet.svg)
 
 *从LeNet（左）到AlexNet（右）*
 

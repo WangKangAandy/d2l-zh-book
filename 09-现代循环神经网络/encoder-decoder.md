@@ -15,7 +15,7 @@
 这被称为*编码器-解码器*（encoder-decoder）架构，
 如 [图](encoder-decoder.md#fig_encoder_decoder) 所示。
 
-![编码器-解码器架构](../图片/encoder-decoder.svg)
+![编码器-解码器架构](../img/encoder-decoder.svg)
 
 *编码器-解码器架构*
 

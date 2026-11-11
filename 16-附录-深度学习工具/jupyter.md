@@ -8,7 +8,7 @@
 
 假设本书代码的本地路径为`xx/yy/d2l-en/`。使用shell将目录更改为此路径（`cd xx/yy/d2l-en`）并运行命令`jupyter notebook`。如果浏览器未自动打开，请打开http://localhost:8888。此时你将看到Jupyter的界面以及包含本书代码的所有文件夹，如 [图](jupyter.md#fig_jupyter00)所示
 
-![包含本书代码的文件夹](../图片/jupyter00.png)
+![包含本书代码的文件夹](../img/jupyter00.png)
 
 *包含本书代码的文件夹*
 
@@ -16,7 +16,7 @@
 
 你可以通过单击网页上显示的文件夹来访问notebook文件。它们通常有后缀“.ipynb”。为了简洁起见，我们创建了一个临时的“test.ipynb”文件。单击后显示的内容如 [图](jupyter.md#fig_jupyter01)所示。此notebook包括一个标记单元格和一个代码单元格。标记单元格中的内容包括“This Is a Title”和“This is text.”。代码单元包含两行Python代码。 
 
-![“test.ipynb”文件中的markdown和代码块](../图片/jupyter01.png)
+![“test.ipynb”文件中的markdown和代码块](../img/jupyter01.png)
 
 *“test.ipynb”文件中的markdown和代码块*
 
@@ -24,7 +24,7 @@
 
 双击标记单元格以进入编辑模式。在单元格末尾添加一个新的文本字符串“Hello world.”，如 [图](jupyter.md#fig_jupyter02)所示。 
 
-![编辑markdown单元格](../图片/jupyter02.png)
+![编辑markdown单元格](../img/jupyter02.png)
 
 *编辑markdown单元格*
 
@@ -32,7 +32,7 @@
 
 如 [图](jupyter.md#fig_jupyter03)所示，单击菜单栏中的“Cell” $\rightarrow$ “Run Cells”以运行编辑后的单元格。 
 
-![运行单元格](../图片/jupyter03.png)
+![运行单元格](../img/jupyter03.png)
 
 *运行单元格*
 
@@ -40,7 +40,7 @@
 
 运行后，markdown单元格如 [图](jupyter.md#fig_jupyter04)所示。 
 
-![编辑后的markdown单元格](../图片/jupyter04.png)
+![编辑后的markdown单元格](../img/jupyter04.png)
 
 *编辑后的markdown单元格*
 
@@ -48,7 +48,7 @@
 
 接下来，单击代码单元。将最后一行代码后的元素乘以2，如 [图](jupyter.md#fig_jupyter05)所示。 
 
-![编辑代码单元格](../图片/jupyter05.png)
+![编辑代码单元格](../img/jupyter05.png)
 
 *编辑代码单元格*
 
@@ -56,7 +56,7 @@
 
 你还可以使用快捷键（默认情况下为Ctrl+Enter）运行单元格，并从 [图](jupyter.md#fig_jupyter06)获取输出结果。 
 
-![运行代码单元格以获得输出](../图片/jupyter06.png)
+![运行代码单元格以获得输出](../img/jupyter06.png)
 
 *运行代码单元格以获得输出*
 

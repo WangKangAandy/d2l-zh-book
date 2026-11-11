@@ -36,7 +36,7 @@
 
 全书大致可分为三个部分，在 [图](index.md#fig_book_org) 中用不同的颜色呈现：
 
-![全书结构](../图片/book-org.svg)
+![全书结构](../img/book-org.svg)
 
 *全书结构*
 

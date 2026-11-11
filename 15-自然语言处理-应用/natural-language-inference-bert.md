@@ -4,7 +4,7 @@
 
 在本章的前面几节中，我们已经为SNLI数据集（ [自然语言推断与数据集](natural-language-inference-and-dataset.md#sec_natural-language-inference-and-dataset)）上的自然语言推断任务设计了一个基于注意力的结构（ [自然语言推断：使用注意力](natural-language-inference-attention.md#sec_natural-language-inference-attention)）。现在，我们通过微调BERT来重新审视这项任务。正如在 [针对序列级和词元级应用微调BERT](finetuning-bert.md#sec_finetuning-bert)中讨论的那样，自然语言推断是一个序列级别的文本对分类问题，而微调BERT只需要一个额外的基于多层感知机的架构，如 [图](natural-language-inference-bert.md#fig_nlp-map-nli-bert)中所示。
 
-![将预训练BERT提供给基于多层感知机的自然语言推断架构](../图片/nlp-map-nli-bert.svg)
+![将预训练BERT提供给基于多层感知机的自然语言推断架构](../img/nlp-map-nli-bert.svg)
 
 *将预训练BERT提供给基于多层感知机的自然语言推断架构*
 

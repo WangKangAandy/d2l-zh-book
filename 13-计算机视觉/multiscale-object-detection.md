@@ -26,7 +26,7 @@
 from d2l import torch as d2l
 import torch
 
-img = d2l.plt.imread('../图片/catdog.jpg')
+img = d2l.plt.imread('../img/catdog.jpg')
 h, w = img.shape[:2]
 h, w
 ```

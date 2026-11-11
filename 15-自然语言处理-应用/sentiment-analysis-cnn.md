@@ -6,7 +6,7 @@
 
 本节将使用*textCNN*模型来演示如何设计一个表示单个文本 [Kim.2014](../17-参考文献/zreferences.md#bib-kim-2014)的卷积神经网络架构。与 [图](sentiment-analysis-rnn.md#fig_nlp-map-sa-rnn)中使用带有GloVe预训练的循环神经网络架构进行情感分析相比， [图](sentiment-analysis-cnn.md#fig_nlp-map-sa-cnn)中唯一的区别在于架构的选择。
 
-![将GloVe放入卷积神经网络架构进行情感分析](../图片/nlp-map-sa-cnn.svg)
+![将GloVe放入卷积神经网络架构进行情感分析](../img/nlp-map-sa-cnn.svg)
 
 *将GloVe放入卷积神经网络架构进行情感分析*
 
@@ -24,7 +24,7 @@ train_iter, test_iter, vocab = d2l.load_data_imdb(batch_size)
 
 在介绍该模型之前，让我们先看看一维卷积是如何工作的。请记住，这只是基于互相关运算的二维卷积的特例。
 
-![一维互相关运算。阴影部分是第一个输出元素以及用于输出计算的输入和核张量元素：$0\times1+1\times2=2$](../图片/conv1d.svg)
+![一维互相关运算。阴影部分是第一个输出元素以及用于输出计算的输入和核张量元素：$0\times1+1\times2=2$](../img/conv1d.svg)
 
 *一维互相关运算。阴影部分是第一个输出元素以及用于输出计算的输入和核张量元素：$0\times1+1\times2=2$*
 
@@ -52,7 +52,7 @@ corr1d(X, K)
 
 对于任何具有多个通道的一维输入，卷积核需要具有相同数量的输入通道。然后，对于每个通道，对输入的一维张量和卷积核的一维张量执行互相关运算，将所有通道上的结果相加以产生一维输出张量。 [图](sentiment-analysis-cnn.md#fig_conv1d_channel)演示了具有3个输入通道的一维互相关操作。
 
-![具有3个输入通道的一维互相关运算。阴影部分是第一个输出元素以及用于输出计算的输入和核张量元素：$2\times(-1)+3\times(-3)+1\times3+2\times4+0\times1+1\times2=2$](../图片/conv1d-channel.svg)
+![具有3个输入通道的一维互相关运算。阴影部分是第一个输出元素以及用于输出计算的输入和核张量元素：$2\times(-1)+3\times(-3)+1\times3+2\times4+0\times1+1\times2=2$](../img/conv1d-channel.svg)
 
 *具有3个输入通道的一维互相关运算。阴影部分是第一个输出元素以及用于输出计算的输入和核张量元素：$2\times(-1)+3\times(-3)+1\times3+2\times4+0\times1+1\times2=2$*
 
@@ -74,7 +74,7 @@ corr1d_multi_in(X, K)
 
 注意，多输入通道的一维互相关等同于单输入通道的二维互相关。举例说明， [图](sentiment-analysis-cnn.md#fig_conv1d_channel)中的多输入通道一维互相关的等价形式是 [图](sentiment-analysis-cnn.md#fig_conv1d_2d)中的单输入通道二维互相关，其中卷积核的高度必须与输入张量的高度相同。
 
-![具有单个输入通道的二维互相关操作。阴影部分是第一个输出元素以及用于输出计算的输入和内核张量元素： $2\times(-1)+3\times(-3)+1\times3+2\times4+0\times1+1\times2=2$](../图片/conv1d-2d.svg)
+![具有单个输入通道的二维互相关操作。阴影部分是第一个输出元素以及用于输出计算的输入和内核张量元素： $2\times(-1)+3\times(-3)+1\times3+2\times4+0\times1+1\times2=2$](../img/conv1d-2d.svg)
 
 *具有单个输入通道的二维互相关操作。阴影部分是第一个输出元素以及用于输出计算的输入和内核张量元素： $2\times(-1)+3\times(-3)+1\times3+2\times4+0\times1+1\times2=2$*
 
@@ -96,7 +96,7 @@ corr1d_multi_in(X, K)
 1. 在所有输出通道上执行最大时间汇聚层，然后将所有标量汇聚输出连结为向量。
 1. 使用全连接层将连结后的向量转换为输出类别。Dropout可以用来减少过拟合。
 
-![textCNN的模型架构](../图片/textcnn.svg)
+![textCNN的模型架构](../img/textcnn.svg)
 
 *textCNN的模型架构*
 

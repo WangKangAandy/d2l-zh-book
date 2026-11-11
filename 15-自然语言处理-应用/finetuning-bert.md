@@ -11,7 +11,7 @@
 *单文本分类*将单个文本序列作为输入，并输出其分类结果。
 除了我们在这一章中探讨的情感分析之外，语言可接受性语料库（Corpus of Linguistic Acceptability，COLA）也是一个单文本分类的数据集，它的要求判断给定的句子在语法上是否可以接受。 [Warstadt.Singh.Bowman.2019](../17-参考文献/zreferences.md#bib-warstadt-singh-bowman-2019)。例如，“I should study.”是可以接受的，但是“I should studying.”不是可以接受的。
 
-![微调BERT用于单文本分类应用，如情感分析和测试语言可接受性（这里假设输入的单个文本有六个词元）](../图片/bert-one-seq.svg)
+![微调BERT用于单文本分类应用，如情感分析和测试语言可接受性（这里假设输入的单个文本有六个词元）](../img/bert-one-seq.svg)
 
 *微调BERT用于单文本分类应用，如情感分析和测试语言可接受性（这里假设输入的单个文本有六个词元）*
 
@@ -30,7 +30,7 @@
 * "A woman is eating something."（“一个女人在吃东西。”），"A woman is eating meat."（“一个女人在吃肉。”），3.000分;
 * "A woman is dancing."（一个女人在跳舞。），"A man is talking."（“一个人在说话。”），0.000分。
 
-![文本对分类或回归应用的BERT微调，如自然语言推断和语义文本相似性（假设输入文本对分别有两个词元和三个词元）](../图片/bert-two-seqs.svg)
+![文本对分类或回归应用的BERT微调，如自然语言推断和语义文本相似性（假设输入文本对分别有两个词元和三个词元）](../img/bert-two-seqs.svg)
 
 *文本对分类或回归应用的BERT微调，如自然语言推断和语义文本相似性（假设输入文本对分别有两个词元和三个词元）*
 
@@ -43,7 +43,7 @@
 现在让我们考虑词元级任务，比如*文本标注*（text tagging），其中每个词元都被分配了一个标签。在文本标注任务中，*词性标注*为每个单词分配词性标记（例如，形容词和限定词）。
 根据单词在句子中的作用。如，在Penn树库II标注集中，句子“John Smith‘s car is new”应该被标记为“NNP（名词，专有单数）NNP POS（所有格结尾）NN（名词，单数或质量）VB（动词，基本形式）JJ（形容词）”。
 
-![文本标记应用的BERT微调，如词性标记。假设输入的单个文本有六个词元。](../图片/bert-tagging.svg)
+![文本标记应用的BERT微调，如词性标记。假设输入的单个文本有六个词元。](../img/bert-tagging.svg)
 
 *文本标记应用的BERT微调，如词性标记。假设输入的单个文本有六个词元。*
 
@@ -56,7 +56,7 @@
 作为另一个词元级应用，*问答*反映阅读理解能力。
 例如，斯坦福问答数据集（Stanford Question Answering Dataset，SQuAD v1.1）由阅读段落和问题组成，其中每个问题的答案只是段落中的一段文本（文本片段） [Rajpurkar.Zhang.Lopyrev.ea.2016](../17-参考文献/zreferences.md#bib-rajpurkar-zhang-lopyrev-ea-2016)。举个例子，考虑一段话：“Some experts report that a mask's efficacy is inconclusive.However,mask makers insist that their products,such as N95 respirator masks,can guard against the virus.”（“一些专家报告说面罩的功效是不确定的。然而，口罩制造商坚持他们的产品，如N95口罩，可以预防病毒。”）还有一个问题“Who say that N95 respirator masks can guard against the virus?”（“谁说N95口罩可以预防病毒？”）。答案应该是文章中的文本片段“mask makers”（“口罩制造商”）。因此，SQuAD v1.1的目标是在给定问题和段落的情况下预测段落中文本片段的开始和结束。
 
-![对问答进行BERT微调（假设输入文本对分别有两个和三个词元）](../图片/bert-qa.svg)
+![对问答进行BERT微调（假设输入文本对分别有两个和三个词元）](../img/bert-qa.svg)
 
 *对问答进行BERT微调（假设输入文本对分别有两个和三个词元）*
 

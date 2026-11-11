@@ -20,7 +20,7 @@
  [图](seq2seq.md#fig_seq2seq)演示了
 如何在机器翻译中使用两个循环神经网络进行序列到序列学习。
 
-![使用循环神经网络编码器和循环神经网络解码器的序列到序列学习](../图片/seq2seq.svg)
+![使用循环神经网络编码器和循环神经网络解码器的序列到序列学习](../img/seq2seq.svg)
 
 *使用循环神经网络编码器和循环神经网络解码器的序列到序列学习*
 
@@ -234,7 +234,7 @@ output.shape, state.shape
 总之，上述循环神经网络“编码器－解码器”模型中的各层如
  [图](seq2seq.md#fig_seq2seq_details)所示。
 
-![循环神经网络编码器-解码器模型中的层](../图片/seq2seq-details.svg)
+![循环神经网络编码器-解码器模型中的层](../img/seq2seq-details.svg)
 
 *循环神经网络编码器-解码器模型中的层*
 
@@ -389,7 +389,7 @@ train_seq2seq(net, train_iter, lr, num_epochs, tgt_vocab, device)
 该预测过程如 [图](seq2seq.md#fig_seq2seq_predict)所示，
 当输出序列的预测遇到序列结束词元（“&lt;eos&gt;”）时，预测就结束了。
 
-![使用循环神经网络编码器-解码器逐词元地预测输出序列。](../图片/seq2seq-predict.svg)
+![使用循环神经网络编码器-解码器逐词元地预测输出序列。](../img/seq2seq-predict.svg)
 
 *使用循环神经网络编码器-解码器逐词元地预测输出序列。*
 

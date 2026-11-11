@@ -12,7 +12,7 @@
  [图](kaggle-cifar10.md#fig_kaggle_cifar10)显示了竞赛网站页面上的信息。
 为了能提交结果，首先需要注册一个Kaggle账户。
 
-![CIFAR-10 图像分类竞赛页面上的信息。竞赛用的数据集可通过点击“Data”选项卡获取。](../图片/kaggle-cifar10.png)
+![CIFAR-10 图像分类竞赛页面上的信息。竞赛用的数据集可通过点击“Data”选项卡获取。](../img/kaggle-cifar10.png)
 
 *CIFAR-10 图像分类竞赛页面上的信息。竞赛用的数据集可通过点击“Data”选项卡获取。*
 

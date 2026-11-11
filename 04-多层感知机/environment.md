@@ -55,7 +55,7 @@
 
 考虑一下区分猫和狗的问题：训练数据包括 [图](environment.md#fig_cat-dog-train)中的图像。
 
-![区分猫和狗的训练数据](../图片/cat-dog-train.svg)
+![区分猫和狗的训练数据](../img/cat-dog-train.svg)
 
 *区分猫和狗的训练数据*
 
@@ -63,7 +63,7 @@
 
 在测试时，我们被要求对 [图](environment.md#fig_cat-dog-test)中的图像进行分类。
 
-![区分猫和狗的测试数据](../图片/cat-dog-test.svg)
+![区分猫和狗的测试数据](../img/cat-dog-test.svg)
 
 *区分猫和狗的测试数据*
 
@@ -99,7 +99,7 @@
 我们会发现关于“软饮”名称的分布发生了相当大的概念偏移，
 如 [图](environment.md#fig_popvssoda) 所示。
 
-![美国软饮名称的概念偏移](../图片/popvssoda.png)
+![美国软饮名称的概念偏移](../img/popvssoda.png)
 
 *美国软饮名称的概念偏移*
 

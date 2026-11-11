@@ -23,7 +23,7 @@ from torch import nn
 
 ```python
 d2l.set_figsize()
-img = d2l.Image.open('../图片/cat1.jpg')
+img = d2l.Image.open('../img/cat1.jpg')
 d2l.plt.imshow(img);
 ```
 

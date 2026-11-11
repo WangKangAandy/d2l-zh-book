@@ -41,7 +41,7 @@ $$\mathbf{c}_{t'} = \sum_{t=1}^T \alpha(\mathbf{s}_{t' - 1}, \mathbf{h}_t) \math
 与 [图](../09-现代循环神经网络/seq2seq.md#fig_seq2seq_details)中的循环神经网络编码器-解码器架构略有不同，
  [图](bahdanau-attention.md#fig_s2s_attention_details)描述了Bahdanau注意力的架构。
 
-![一个带有Bahdanau注意力的循环神经网络编码器-解码器模型](../图片/seq2seq-attention-details.svg)
+![一个带有Bahdanau注意力的循环神经网络编码器-解码器模型](../img/seq2seq-attention-details.svg)
 
 *一个带有Bahdanau注意力的循环神经网络编码器-解码器模型*
 

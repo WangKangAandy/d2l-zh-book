@@ -58,7 +58,7 @@ $$
 
 作为另一种近似训练方法，*层序Softmax*（hierarchical softmax）使用二叉树（ [图](approx-training.md#fig_hi_softmax)中说明的数据结构），其中树的每个叶节点表示词表$\mathcal{V}$中的一个词。
 
-![用于近似训练的分层softmax，其中树的每个叶节点表示词表中的一个词](../图片/hi-softmax.svg)
+![用于近似训练的分层softmax，其中树的每个叶节点表示词表中的一个词](../img/hi-softmax.svg)
 
 *用于近似训练的分层softmax，其中树的每个叶节点表示词表中的一个词*
 

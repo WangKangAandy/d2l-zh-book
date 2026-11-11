@@ -8,7 +8,7 @@
  [图](semantic-segmentation-and-dataset.md#fig_segmentation)展示了语义分割中图像有关狗、猫和背景的标签。
 与目标检测相比，语义分割标注的像素级的边框显然更加精细。
 
-![语义分割中图像有关狗、猫和背景的标签](../图片/segmentation.svg)
+![语义分割中图像有关狗、猫和背景的标签](../img/segmentation.svg)
 
 *语义分割中图像有关狗、猫和背景的标签*
 

@@ -234,7 +234,7 @@ d2l.plot([freqs, bigram_freqs, trigram_freqs], xlabel='token: x',
 其中$n=5$，并且每个时间步的词元对应于一个字符。
 请注意，因为我们可以选择任意偏移量来指示初始位置，所以我们有相当大的自由度。
 
-![分割文本时，不同的偏移量会导致不同的子序列](../图片/timemachine-5gram.svg)
+![分割文本时，不同的偏移量会导致不同的子序列](../img/timemachine-5gram.svg)
 
 *分割文本时，不同的偏移量会导致不同的子序列*
 

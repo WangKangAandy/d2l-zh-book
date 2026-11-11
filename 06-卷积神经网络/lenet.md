@@ -25,7 +25,7 @@ LeNet被广泛用于自动取款机（ATM）机中，帮助识别处理支票的
 
 该架构如 [LeNet](lenet.md#img_lenet)所示。
 
-![LeNet中的数据流。输入是手写数字，输出为10种可能结果的概率。](../图片/lenet.svg)
+![LeNet中的数据流。输入是手写数字，输出为10种可能结果的概率。](../img/lenet.svg)
 
 *LeNet中的数据流。输入是手写数字，输出为10种可能结果的概率。*
 
@@ -57,7 +57,7 @@ net = nn.Sequential(
 
 下面，我们将一个大小为$28 \times 28$的单通道（黑白）图像通过LeNet。通过在每一层打印输出的形状，我们可以**检查模型**，以确保其操作与我们期望的 [LeNet](lenet.md#img_lenet_vert)一致。
 
-![LeNet 的简化版。](../图片/lenet-vert.svg)
+![LeNet 的简化版。](../img/lenet-vert.svg)
 
 *LeNet 的简化版。*
 

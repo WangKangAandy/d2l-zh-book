@@ -44,7 +44,7 @@ def vgg_block(num_convs, in_channels, out_channels):
 
 与AlexNet、LeNet一样，VGG网络可以分为两部分：第一部分主要由卷积层和汇聚层组成，第二部分由全连接层组成。如 [图](vgg.md#fig_vgg)中所示。
 
-![从AlexNet到VGG，它们本质上都是块设计。](../图片/vgg.svg)
+![从AlexNet到VGG，它们本质上都是块设计。](../img/vgg.svg)
 
 *从AlexNet到VGG，它们本质上都是块设计。*
 

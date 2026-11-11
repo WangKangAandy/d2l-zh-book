@@ -23,7 +23,7 @@
  [图](multihead-attention.md#fig_multi-head-attention)
 展示了使用全连接层来实现可学习的线性变换的多头注意力。
 
-![多头注意力：多个头连结然后线性变换](../图片/multi-head-attention.svg)
+![多头注意力：多个头连结然后线性变换](../img/multi-head-attention.svg)
 
 *多头注意力：多个头连结然后线性变换*
 

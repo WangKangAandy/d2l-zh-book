@@ -13,7 +13,7 @@ GoogLeNet吸收了NiN中串联网络的思想，并在此基础上做了改进�
 
 在GoogLeNet中，基本的卷积块被称为*Inception块*（Inception block）。这很可能得名于电影《盗梦空间》（Inception），因为电影中的一句话“我们需要走得更深”（“We need to go deeper”）。
 
-![Inception块的架构。](../图片/inception.svg)
+![Inception块的架构。](../img/inception.svg)
 
 *Inception块的架构。*
 
@@ -65,7 +65,7 @@ class Inception(nn.Module):
 如 [图](googlenet.md#fig_inception_full)所示，GoogLeNet一共使用9个Inception块和全局平均汇聚层的堆叠来生成其估计值。Inception块之间的最大汇聚层可降低维度。
 第一个模块类似于AlexNet和LeNet，Inception块的组合从VGG继承，全局平均汇聚层避免了在最后使用全连接层。
 
-![GoogLeNet架构。](../图片/inception-full.svg)
+![GoogLeNet架构。](../img/inception-full.svg)
 
 *GoogLeNet架构。*
 

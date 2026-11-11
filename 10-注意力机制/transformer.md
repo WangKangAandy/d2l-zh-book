@@ -8,7 +8,7 @@
 
 Transformer作为编码器－解码器架构的一个实例，其整体架构图在 [图](transformer.md#fig_transformer)中展示。正如所见到的，Transformer是由编码器和解码器组成的。与 [图](bahdanau-attention.md#fig_s2s_attention_details)中基于Bahdanau注意力实现的序列到序列的学习相比，Transformer的编码器和解码器是基于自注意力的模块叠加而成的，源（输入）序列和目标（输出）序列的*嵌入*（embedding）表示将加上*位置编码*（positional encoding），再分别输入到编码器和解码器中。
 
-![transformer架构](../图片/transformer.svg)
+![transformer架构](../img/transformer.svg)
 
 *transformer架构*
 

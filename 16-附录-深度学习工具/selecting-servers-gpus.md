@@ -39,7 +39,7 @@ GPU供应商通常每一到两年发布一代，例如2017年发布的GTX 1000�
 
 [图](selecting-servers-gpus.md#fig_flopsvsprice)比较了各种GTX 900、GTX 1000和RTX 2000系列的（GFlops）和价格（Price）。价格是维基百科上的建议价格。
 
-![浮点计算能力和价格比较](../图片/flopsvsprice.svg)
+![浮点计算能力和价格比较](../img/flopsvsprice.svg)
 
 *浮点计算能力和价格比较*
 
@@ -51,7 +51,7 @@ GPU供应商通常每一到两年发布一代，例如2017年发布的GTX 1000�
 2. GTX 1000系列的性价比大约是900系列的两倍；
 3. 对于RTX 2000系列，浮点计算能力是价格的“仿射”函数。
 
-![浮点计算能力和能耗](../图片/wattvsprice.svg)
+![浮点计算能力和能耗](../img/wattvsprice.svg)
 
 *浮点计算能力和能耗*
 

@@ -83,7 +83,7 @@ def multibox_prior(data, sizes, ratios):
 可以看到**返回的锚框变量`Y`的形状**是（批量大小，锚框的数量，4）。
 
 ```python
-img = d2l.plt.imread('../图片/catdog.jpg')
+img = d2l.plt.imread('../img/catdog.jpg')
 h, w = img.shape[:2]
 
 print(h, w)
@@ -158,7 +158,7 @@ $$J(\mathcal{A},\mathcal{B}) = \frac{\left|\mathcal{A} \cap \mathcal{B}\right|}{
 对于两个边界框，它们的杰卡德系数通常称为*交并比*（intersection over union，IoU），即两个边界框相交面积与相并面积之比，如 [图](anchor.md#fig_iou)所示。
 交并比的取值范围在0和1之间：0表示两个边界框无重合像素，1表示两个边界框完全重合。
 
-![交并比是两个边界框相交面积与相并面积之比。](../图片/iou.svg)
+![交并比是两个边界框相交面积与相并面积之比。](../img/iou.svg)
 
 *交并比是两个边界框相交面积与相并面积之比。*
 
@@ -221,7 +221,7 @@ def box_iou(boxes1, boxes2):
 最后，如 [图](anchor.md#fig_anchor_label)（右）所示，丢弃矩阵第5行和第4列中的所有元素，在剩余元素（阴影区域）中找到最大的$x_{92}$，然后将真实边界框$B_2$分配给锚框$A_9$。
 之后，我们只需要遍历剩余的锚框$A_1, A_3, A_4, A_6, A_8$，然后根据阈值确定是否为它们分配真实边界框。
 
-![将真实边界框分配给锚框。](../图片/anchor-label.svg)
+![将真实边界框分配给锚框。](../img/anchor-label.svg)
 
 *将真实边界框分配给锚框。*
 

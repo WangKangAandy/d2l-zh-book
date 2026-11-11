@@ -4,7 +4,7 @@
 
 与词相似度和类比任务一样，我们也可以将预先训练的词向量应用于情感分析。由于 [情感分析及数据集](sentiment-analysis-and-dataset.md#sec_sentiment)中的IMDb评论数据集不是很大，使用在大规模语料库上预训练的文本表示可以减少模型的过拟合。作为 [图](sentiment-analysis-rnn.md#fig_nlp-map-sa-rnn)中所示的具体示例，我们将使用预训练的GloVe模型来表示每个词元，并将这些词元表示送入多层双向循环神经网络以获得文本序列表示，该文本序列表示将被转换为情感分析输出 [Maas.Daly.Pham.ea.2011](../17-参考文献/zreferences.md#bib-maas-daly-pham-ea-2011)。对于相同的下游应用，我们稍后将考虑不同的架构选择。
 
-![将GloVe送入基于循环神经网络的架构，用于情感分析](../图片/nlp-map-sa-rnn.svg)
+![将GloVe送入基于循环神经网络的架构，用于情感分析](../img/nlp-map-sa-rnn.svg)
 
 *将GloVe送入基于循环神经网络的架构，用于情感分析*
 

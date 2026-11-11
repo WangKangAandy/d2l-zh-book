@@ -21,7 +21,7 @@ print(fancy_func(1, 2, 3, 4))
 
 Python是一种*解释型语言*（interpreted language）。因此，当对上面的`fancy_func`函数求值时，它按顺序执行函数体的操作。也就是说，它将通过对`e = add(a, b)`求值，并将结果存储为变量`e`，从而更改程序的状态。接下来的两个语句`f = add(c, d)`和`g = add(e, f)`也将执行类似地操作，即执行加法计算并将结果存储为变量。 [图](hybridize.md#fig_compute_graph)说明了数据流。
 
-![命令式编程中的数据流](../图片/computegraph.svg)
+![命令式编程中的数据流](../img/computegraph.svg)
 
 *命令式编程中的数据流*
 
