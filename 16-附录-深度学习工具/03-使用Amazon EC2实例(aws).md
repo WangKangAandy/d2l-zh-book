@@ -12,7 +12,7 @@
 
 ## 创建和运行EC2实例
 
-登录到你的aws账户后，单击“EC2”（在 [图](03-使用Amazon EC2实例.md#fig_aws)中用红色方框标记）进入EC2面板。
+登录到你的aws账户后，单击“EC2”（在 [图](03-使用Amazon EC2实例(aws).md#fig_aws)中用红色方框标记）进入EC2面板。
 
 ![打开EC2控制台](../img/aws.png)
 
@@ -20,7 +20,7 @@
 
 <a id="fig_aws"></a>
 
-[图](03-使用Amazon EC2实例.md#fig_ec2)显示EC2面板，敏感帐户信息变为灰色。
+[图](03-使用Amazon EC2实例(aws).md#fig_ec2)显示EC2面板，敏感帐户信息变为灰色。
 
 ![EC2面板](../img/ec2.png)
 
@@ -29,11 +29,11 @@
 <a id="fig_ec2"></a>
 
 ### 预置位置
-选择附近的数据中心以降低延迟，例如“Oregon”（俄勒冈）( [图](03-使用Amazon EC2实例.md#fig_ec2)右上角的红色方框）。如果你位于中国，你可以选择附近的亚太地区，例如首尔或东京。请注意，某些数据中心可能没有GPU实例。
+选择附近的数据中心以降低延迟，例如“Oregon”（俄勒冈）( [图](03-使用Amazon EC2实例(aws).md#fig_ec2)右上角的红色方框）。如果你位于中国，你可以选择附近的亚太地区，例如首尔或东京。请注意，某些数据中心可能没有GPU实例。
 
 ### 增加限制
 
-在选择实例之前，请点击 [图](03-使用Amazon EC2实例.md#fig_ec2)所示左侧栏中的“Limits”（限制）标签查看是否有数量限制。 [图](03-使用Amazon EC2实例.md#fig_limits)显示了此类限制的一个例子。账号目前无法按地域打开p2.xlarge实例。如果你需要打开一个或多个实例，请点击“Request limit increase”（请求增加限制）链接，申请更高的实例配额。一般来说，需要一个工作日的时间来处理申请。
+在选择实例之前，请点击 [图](03-使用Amazon EC2实例(aws).md#fig_ec2)所示左侧栏中的“Limits”（限制）标签查看是否有数量限制。 [图](03-使用Amazon EC2实例(aws).md#fig_limits)显示了此类限制的一个例子。账号目前无法按地域打开p2.xlarge实例。如果你需要打开一个或多个实例，请点击“Request limit increase”（请求增加限制）链接，申请更高的实例配额。一般来说，需要一个工作日的时间来处理申请。
 
 ![实例数量限制](../img/limits.png)
 
@@ -43,9 +43,9 @@
 
 ### 启动实例
 
-接下来，单击 [图](03-使用Amazon EC2实例.md#fig_ec2)中红框标记的“Launch Instance”（启动实例）按钮，启动你的实例。
+接下来，单击 [图](03-使用Amazon EC2实例(aws).md#fig_ec2)中红框标记的“Launch Instance”（启动实例）按钮，启动你的实例。
 
-我们首先选择一个合适的Amazon机器映像（Amazon Machine Image，AMI）。在搜索框中输入“ubuntu”（ [图](03-使用Amazon EC2实例.md#fig_ubuntu)中的红色框标记）。
+我们首先选择一个合适的Amazon机器映像（Amazon Machine Image，AMI）。在搜索框中输入“ubuntu”（ [图](03-使用Amazon EC2实例(aws).md#fig_ubuntu)中的红色框标记）。
 
 ![选择一个AMI](../img/ubuntu-new.png)
 
@@ -77,7 +77,7 @@ EC2提供了许多不同的实例配置可供选择。对初学者来说，这�
 
 注意，你应该使用支持GPU的实例以及合适的驱动程序和支持GPU的深度学习框架。否则，你将感受不到使用GPU的任何好处。
 
-到目前为止，我们已经完成了启动EC2实例的七个步骤中的前两个步骤，如 [图](03-使用Amazon EC2实例.md#fig_disk)顶部所示。在本例中，我们保留“3. Configure Instance”（3. 配置实例）、“5. Add Tags”（5. 添加标签）和“6. Configure Security Group”（6. 配置安全组）步骤的默认配置。点击“4.添加存储”并将默认硬盘大小增加到64GB( [图](03-使用Amazon EC2实例.md#fig_disk)中的红色框标记)。请注意，CUDA本身已经占用了4GB空间。
+到目前为止，我们已经完成了启动EC2实例的七个步骤中的前两个步骤，如 [图](03-使用Amazon EC2实例(aws).md#fig_disk)顶部所示。在本例中，我们保留“3. Configure Instance”（3. 配置实例）、“5. Add Tags”（5. 添加标签）和“6. Configure Security Group”（6. 配置安全组）步骤的默认配置。点击“4.添加存储”并将默认硬盘大小增加到64GB( [图](03-使用Amazon EC2实例(aws).md#fig_disk)中的红色框标记)。请注意，CUDA本身已经占用了4GB空间。
 
 ![修改硬盘大小](../img/disk.png)
 
@@ -85,7 +85,7 @@ EC2提供了许多不同的实例配置可供选择。对初学者来说，这�
 
 <a id="fig_disk"></a>
 
-最后，进入“7. Review”（7. 查看），点击“Launch”（启动），即可启动配置好的实例。系统现在将提示你选择用于访问实例的密钥对。如果你没有密钥对，请在 [图](03-使用Amazon EC2实例.md#fig_keypair)的第一个下拉菜单中选择“Create a new key pair”（新建密钥对），即可生成密钥对。之后，你可以在此菜单中选择“Choose an existing key pair”（选择现有密钥对），然后选择之前生成的密钥对。单击“Launch Instances”（启动实例）即可启动创建的实例。
+最后，进入“7. Review”（7. 查看），点击“Launch”（启动），即可启动配置好的实例。系统现在将提示你选择用于访问实例的密钥对。如果你没有密钥对，请在 [图](03-使用Amazon EC2实例(aws).md#fig_keypair)的第一个下拉菜单中选择“Create a new key pair”（新建密钥对），即可生成密钥对。之后，你可以在此菜单中选择“Choose an existing key pair”（选择现有密钥对），然后选择之前生成的密钥对。单击“Launch Instances”（启动实例）即可启动创建的实例。
 
 ![选择一个密钥对](../img/keypair.png)
 
@@ -93,7 +93,7 @@ EC2提供了许多不同的实例配置可供选择。对初学者来说，这�
 
 <a id="fig_keypair"></a>
 
-如果生成了新密钥对，请确保下载密钥对并将其存储在安全位置。这是你通过SSH连接到服务器的唯一方式。单击 [图](03-使用Amazon EC2实例.md#fig_launching)中显示的实例ID可查看该实例的状态。
+如果生成了新密钥对，请确保下载密钥对并将其存储在安全位置。这是你通过SSH连接到服务器的唯一方式。单击 [图](03-使用Amazon EC2实例(aws).md#fig_launching)中显示的实例ID可查看该实例的状态。
 
 ![单击实例ID](../img/launching.png)
 
@@ -103,7 +103,7 @@ EC2提供了许多不同的实例配置可供选择。对初学者来说，这�
 
 ### 连接到实例
 
-如 [图](03-使用Amazon EC2实例.md#fig_connect)所示，实例状态变为绿色后，右键单击实例，选择`Connect`（连接）查看实例访问方式。
+如 [图](03-使用Amazon EC2实例(aws).md#fig_connect)所示，实例状态变为绿色后，右键单击实例，选择`Connect`（连接）查看实例访问方式。
 
 ![查看实例访问方法](../img/connect.png)
 
@@ -123,7 +123,7 @@ chmod 400 D2L_key.pem
 
 <a id="fig_chmod"></a>
 
-现在，复制 [图](03-使用Amazon EC2实例.md#fig_chmod)下方红色框中的ssh命令并粘贴到命令行：
+现在，复制 [图](03-使用Amazon EC2实例(aws).md#fig_chmod)下方红色框中的ssh命令并粘贴到命令行：
 
 ```bash
 ssh -i "D2L_key.pem" ubuntu@ec2-xx-xxx-xxx-xxx.y.compute.amazonaws.com
@@ -141,7 +141,7 @@ ssh -i "D2L_key.pem" ubuntu@ec2-xx-xxx-xxx-xxx.y.compute.amazonaws.com
 sudo apt-get update && sudo apt-get install -y build-essential git libgfortran3
 ```
 
-我们在这里下载CUDA 10.1。访问NVIDIA的[官方存储库](https://developer.nvidia.com/cuda-toolkit-archive) 以找到下载链接，如 [图](03-使用Amazon EC2实例.md#fig_cuda)中所示。
+我们在这里下载CUDA 10.1。访问NVIDIA的[官方存储库](https://developer.nvidia.com/cuda-toolkit-archive) 以找到下载链接，如 [图](03-使用Amazon EC2实例(aws).md#fig_cuda)中所示。
 
 ![查找CUDA 10.1下载地址](../img/cuda101.png)
 
@@ -197,7 +197,7 @@ conda activate d2l
 jupyter notebook
 ```
 
-[图](03-使用Amazon EC2实例.md#fig_jupyter)显示了运行Jupyter笔记本后可能的输出。最后一行是端口8888的URL。
+[图](03-使用Amazon EC2实例(aws).md#fig_jupyter)显示了运行Jupyter笔记本后可能的输出。最后一行是端口8888的URL。
 
 ![运行Jupyter Notebook后的输出（最后一行是端口8888的URL）](../img/jupyter.png)
 
@@ -205,7 +205,7 @@ jupyter notebook
 
 <a id="fig_jupyter"></a>
 
-由于你使用端口转发到端口8889，请复制 [图](03-使用Amazon EC2实例.md#fig_jupyter)红色框中的最后一行，将URL中的“8888”替换为“8889”，然后在本地浏览器中打开它。
+由于你使用端口转发到端口8889，请复制 [图](03-使用Amazon EC2实例(aws).md#fig_jupyter)红色框中的最后一行，将URL中的“8888”替换为“8889”，然后在本地浏览器中打开它。
 
 ## 关闭未使用的实例
 
@@ -214,7 +214,7 @@ jupyter notebook
 * “Stopping”（停止）实例意味着你可以重新启动它。这类似于关闭常规服务器的电源。但是，停止的实例仍将按保留的硬盘空间收取少量费用；
 * “Terminating”（终止）实例将删除与其关联的所有数据。这包括磁盘，因此你不能再次启动它。只有在你知道将来不需要它的情况下才这样做。
 
-如果你想要将该实例用作更多实例的模板，请右击 [图](03-使用Amazon EC2实例.md#fig_connect)中的例子，然后选择“Image”$\rightarrow$“Create”以创建该实例的镜像。完成后，选择“实例状态”$\rightarrow$“终止”以终止实例。下次要使用此实例时，可以按照本节中的步骤基于保存的镜像创建实例。唯一的区别是，在 [图](03-使用Amazon EC2实例.md#fig_ubuntu)所示的“1.选择AMI”中，你必须使用左侧的“我的AMI”选项来选择你保存的镜像。创建的实例将保留镜像硬盘上存储的信息。例如，你不必重新安装CUDA和其他运行时环境。
+如果你想要将该实例用作更多实例的模板，请右击 [图](03-使用Amazon EC2实例(aws).md#fig_connect)中的例子，然后选择“Image”$\rightarrow$“Create”以创建该实例的镜像。完成后，选择“实例状态”$\rightarrow$“终止”以终止实例。下次要使用此实例时，可以按照本节中的步骤基于保存的镜像创建实例。唯一的区别是，在 [图](03-使用Amazon EC2实例(aws).md#fig_ubuntu)所示的“1.选择AMI”中，你必须使用左侧的“我的AMI”选项来选择你保存的镜像。创建的实例将保留镜像硬盘上存储的信息。例如，你不必重新安装CUDA和其他运行时环境。
 
 ## 小结
 

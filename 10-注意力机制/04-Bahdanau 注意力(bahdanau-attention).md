@@ -30,7 +30,7 @@ $$\mathbf{c}_{t'} = \sum_{t=1}^T \alpha(\mathbf{s}_{t' - 1}, \mathbf{h}_t) \math
 所定义的加性注意力打分函数计算的。
 
 与 [图](../09-现代循环神经网络/07-序列到序列学习（seq2seq）.md#fig_seq2seq_details)中的循环神经网络编码器-解码器架构略有不同，
- [图](04-Bahdanau 注意力.md#fig_s2s_attention_details)描述了Bahdanau注意力的架构。
+ [图](04-Bahdanau 注意力(bahdanau-attention).md#fig_s2s_attention_details)描述了Bahdanau注意力的架构。
 
 ![一个带有Bahdanau注意力的循环神经网络编码器-解码器模型](../img/seq2seq-attention-details.svg)
 
