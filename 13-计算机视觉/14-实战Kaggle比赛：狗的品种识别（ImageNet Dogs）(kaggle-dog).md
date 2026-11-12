@@ -2,7 +2,7 @@
 
 本节我们将在Kaggle上实战狗品种识别问题。
 本次**比赛网址是https://www.kaggle.com/c/dog-breed-identification**。
- [图](14-实战Kaggle比赛：狗的品种识别（ImageNet Dogs）.md#fig_kaggle_dog)显示了鉴定比赛网页上的信息。
+ [图](14-实战Kaggle比赛：狗的品种识别（ImageNet Dogs）(kaggle-dog).md#fig_kaggle_dog)显示了鉴定比赛网页上的信息。
 需要一个Kaggle账户才能提交结果。
 
 在这场比赛中，我们将识别120类不同品种的狗。
@@ -29,7 +29,7 @@ import os
 
 ### 下载数据集
 
-登录Kaggle后，可以点击 [图](14-实战Kaggle比赛：狗的品种识别（ImageNet Dogs）.md#fig_kaggle_dog)中显示的竞争网页上的“数据”选项卡，然后点击“全部下载”按钮下载数据集。在`../data`中解压下载的文件后，将在以下路径中找到整个数据集：
+登录Kaggle后，可以点击 [图](14-实战Kaggle比赛：狗的品种识别（ImageNet Dogs）(kaggle-dog).md#fig_kaggle_dog)中显示的竞争网页上的“数据”选项卡，然后点击“全部下载”按钮下载数据集。在`../data`中解压下载的文件后，将在以下路径中找到整个数据集：
 
 * ../data/dog-breed-identification/labels.csv
 * ../data/dog-breed-identification/sample_submission.csv
