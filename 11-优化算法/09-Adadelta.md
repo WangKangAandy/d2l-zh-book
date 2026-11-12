@@ -2,8 +2,7 @@
 
 <a id="sec_adadelta"></a>
 
-Adadelta是AdaGrad的另一种变体（ [AdaGrad算法](07-AdaGrad算法.md#sec_adagrad)），
-主要区别在于前者减少了学习率适应坐标的数量。
+Adadelta是AdaGrad的另一种变体（ [AdaGrad算法](07-AdaGrad算法.md#sec_adagrad)），主要区别在于前者减少了学习率适应坐标的数量。
 此外，广义上Adadelta被称为没有学习率，因为它使用变化量本身作为未来变化的校准。
 Adadelta算法是在 [Zeiler.2012](../17-参考文献/00-参考文献.md#bib-zeiler-2012)中提出的。
 

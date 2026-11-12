@@ -60,12 +60,11 @@ import os
 含着两个类别的1000张图片用于训练，其余的则用于测试。
 
 解压下载的数据集，我们获得了两个文件夹`hotdog/train`和`hotdog/test`。
-这两个文件夹都有`hotdog`（有热狗）和`not-hotdog`（无热狗）两个子文件夹，
-子文件夹内都包含相应类的图像。
+这两个文件夹都有`hotdog`（有热狗）和`not-hotdog`（无热狗）两个子文件夹，子文件夹内都包含相应类的图像。
 
 ```python
 #@save
-d2l.DATA_HUB['hotdog'] = (d2l.DATA_URL + 'hotdog.zip', 
+d2l.DATA_HUB['hotdog'] = (d2l.DATA_URL + 'hotdog.zip',
                          'fba480ffa8aa7e0febbb511d181409f899b9baa5')
 
 data_dir = d2l.download_extract('hotdog')
@@ -170,7 +169,7 @@ def train_fine_tuning(net, learning_rate, batch_size=128, num_epochs=5,
                                 lr=learning_rate, weight_decay=0.001)
     else:
         trainer = torch.optim.SGD(net.parameters(), lr=learning_rate,
-                                  weight_decay=0.001)    
+                                  weight_decay=0.001)
     d2l.train_ch13(net, train_iter, test_iter, loss, trainer, num_epochs,
                    devices)
 ```

@@ -12,8 +12,7 @@ from torch import nn
 
 ## 模型
 
-与softmax回归的简洁实现（ [softmax回归的简洁实现](../03-线性神经网络/07-softmax回归的简洁实现(softmax-regression-concise).md#sec_softmax_concise)）相比，
-唯一的区别是我们添加了2个全连接层（之前我们只添加了1个全连接层）。
+与softmax回归的简洁实现（ [softmax回归的简洁实现](../03-线性神经网络/07-softmax回归的简洁实现(softmax-regression-concise).md#sec_softmax_concise)）相比，唯一的区别是我们添加了2个全连接层（之前我们只添加了1个全连接层）。
 第一层是**隐藏层**，它**包含256个隐藏单元，并使用了ReLU激活函数**。
 第二层是输出层。
 
@@ -30,8 +29,7 @@ def init_weights(m):
 net.apply(init_weights);
 ```
 
-**训练过程**的实现与我们实现softmax回归时完全相同，
-这种模块化设计使我们能够将与模型架构有关的内容独立出来。
+**训练过程**的实现与我们实现softmax回归时完全相同，这种模块化设计使我们能够将与模型架构有关的内容独立出来。
 
 ```python
 batch_size, lr, num_epochs = 256, 0.1, 10

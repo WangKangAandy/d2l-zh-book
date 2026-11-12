@@ -5,8 +5,7 @@
 上节介绍了框架下的注意力机制的主要成分 [图](01-注意力提示(attention-cues).md#fig_qkv)：
 查询（自主提示）和键（非自主提示）之间的交互形成了注意力汇聚；
 注意力汇聚有选择地聚合了值（感官输入）以生成最终的输出。
-本节将介绍注意力汇聚的更多细节，
-以便从宏观上了解注意力机制在实践中的运作方式。
+本节将介绍注意力汇聚的更多细节，以便从宏观上了解注意力机制在实践中的运作方式。
 具体来说，1964年提出的Nadaraya-Watson核回归模型
 是一个简单但完整的例子，可以用于演示具有注意力机制的机器学习。
 
@@ -20,11 +19,9 @@ from torch import nn
 
 简单起见，考虑下面这个回归问题：
 给定的成对的“输入－输出”数据集
-$\{(x_1, y_1), \ldots, (x_n, y_n)\}$，
-如何学习$f$来预测任意新输入$x$的输出$\hat{y} = f(x)$？
+$\{(x_1, y_1), \ldots, (x_n, y_n)\}$，如何学习$f$来预测任意新输入$x$的输出$\hat{y} = f(x)$？
 
-根据下面的非线性函数生成一个人工数据集，
-其中加入的噪声项为$\epsilon$：
+根据下面的非线性函数生成一个人工数据集，其中加入的噪声项为$\epsilon$：
 
 $$y_i = 2\sin(x_i) + x_i^{0.8} + \epsilon,$$
 
@@ -48,9 +45,7 @@ n_test = len(x_test)  # 测试样本数
 n_test
 ```
 
-下面的函数将绘制所有的训练样本（样本由圆圈表示），
-不带噪声项的真实数据生成函数$f$（标记为“Truth”），
-以及学习得到的预测函数（标记为“Pred”）。
+下面的函数将绘制所有的训练样本（样本由圆圈表示），不带噪声项的真实数据生成函数$f$（标记为“Truth”），以及学习得到的预测函数（标记为“Pred”）。
 
 ```python
 def plot_kernel_reg(y_hat):
@@ -80,8 +75,7 @@ plot_kernel_reg(y_hat)
 
 显然，平均汇聚忽略了输入$x_i$。
 于是Nadaraya [Nadaraya.1964](../17-参考文献/00-参考文献.md#bib-nadaraya-1964)和
-Watson [Watson.1964](../17-参考文献/00-参考文献.md#bib-watson-1964)提出了一个更好的想法，
-根据输入的位置对输出$y_i$进行加权：
+Watson [Watson.1964](../17-参考文献/00-参考文献.md#bib-watson-1964)提出了一个更好的想法，根据输入的位置对输出$y_i$进行加权：
 
 $$f(x) = \sum_{i=1}^n \frac{K(x - x_i)}{\sum_{j=1}^n K(x - x_j)} y_i,$$
 
@@ -90,28 +84,21 @@ $$f(x) = \sum_{i=1}^n \frac{K(x - x_i)}{\sum_{j=1}^n K(x - x_j)} y_i,$$
 其中$K$是*核*（kernel）。
 公式 [公式](02-注意力汇聚：Nadaraya-Watson 核回归.md#eq_nadaraya-watson)所描述的估计器被称为
 *Nadaraya-Watson核回归*（Nadaraya-Watson kernel regression）。
-这里不会深入讨论核函数的细节，
-但受此启发，
-我们可以从 [图](01-注意力提示(attention-cues).md#fig_qkv)中的注意力机制框架的角度
-重写 [公式](02-注意力汇聚：Nadaraya-Watson 核回归.md#eq_nadaraya-watson)，
-成为一个更加通用的*注意力汇聚*（attention pooling）公式：
+这里不会深入讨论核函数的细节，但受此启发，我们可以从 [图](01-注意力提示(attention-cues).md#fig_qkv)中的注意力机制框架的角度
+重写 [公式](02-注意力汇聚：Nadaraya-Watson 核回归.md#eq_nadaraya-watson)，成为一个更加通用的*注意力汇聚*（attention pooling）公式：
 
 $$f(x) = \sum_{i=1}^n \alpha(x, x_i) y_i,$$
 
 <a id="eq_attn-pooling"></a>
 
 其中$x$是查询，$(x_i, y_i)$是键值对。
-比较 [公式](02-注意力汇聚：Nadaraya-Watson 核回归.md#eq_attn-pooling)和 [公式](02-注意力汇聚：Nadaraya-Watson 核回归.md#eq_avg-pooling)，
-注意力汇聚是$y_i$的加权平均。
+比较 [公式](02-注意力汇聚：Nadaraya-Watson 核回归.md#eq_attn-pooling)和 [公式](02-注意力汇聚：Nadaraya-Watson 核回归.md#eq_avg-pooling)，注意力汇聚是$y_i$的加权平均。
 将查询$x$和键$x_i$之间的关系建模为
-*注意力权重*（attention weight）$\alpha(x, x_i)$，
-如 [公式](02-注意力汇聚：Nadaraya-Watson 核回归.md#eq_attn-pooling)所示，
-这个权重将被分配给每一个对应值$y_i$。
+*注意力权重*（attention weight）$\alpha(x, x_i)$，如 [公式](02-注意力汇聚：Nadaraya-Watson 核回归.md#eq_attn-pooling)所示，这个权重将被分配给每一个对应值$y_i$。
 对于任何查询，模型在所有键值对注意力权重都是一个有效的概率分布：
 它们是非负的，并且总和为1。
 
-为了更好地理解注意力汇聚，
-下面考虑一个*高斯核*（Gaussian kernel），其定义为：
+为了更好地理解注意力汇聚，下面考虑一个*高斯核*（Gaussian kernel），其定义为：
 
 $$K(u) = \frac{1}{\sqrt{2\pi}} \exp(-\frac{u^2}{2}).$$
 
@@ -122,10 +109,7 @@ $$\begin{aligned} f(x) &=\sum_{i=1}^n \alpha(x, x_i) y_i\\ &= \sum_{i=1}^n \frac
 
 <a id="eq_nadaraya-watson-gaussian"></a>
 
-在 [公式](02-注意力汇聚：Nadaraya-Watson 核回归.md#eq_nadaraya-watson-gaussian)中，
-如果一个键$x_i$越是接近给定的查询$x$，
-那么分配给这个键对应值$y_i$的注意力权重就会越大，
-也就“获得了更多的注意力”。
+在 [公式](02-注意力汇聚：Nadaraya-Watson 核回归.md#eq_nadaraya-watson-gaussian)中，如果一个键$x_i$越是接近给定的查询$x$，那么分配给这个键对应值$y_i$的注意力权重就会越大，也就“获得了更多的注意力”。
 
 值得注意的是，Nadaraya-Watson核回归是一个非参数模型。
 因此， [公式](02-注意力汇聚：Nadaraya-Watson 核回归.md#eq_nadaraya-watson-gaussian)是
@@ -147,8 +131,7 @@ plot_kernel_reg(y_hat)
 
 现在来观察注意力的权重。
 这里测试数据的输入相当于查询，而训练数据的输入相当于键。
-因为两个输入都是经过排序的，因此由观察可知“查询-键”对越接近，
-注意力汇聚的**注意力权重**就越高。
+因为两个输入都是经过排序的，因此由观察可知“查询-键”对越接近，注意力汇聚的**注意力权重**就越高。
 
 ```python
 d2l.show_heatmaps(attention_weights.unsqueeze(0).unsqueeze(0),
@@ -162,8 +145,7 @@ d2l.show_heatmaps(attention_weights.unsqueeze(0).unsqueeze(0),
 如果有足够的数据，此模型会收敛到最优结果。
 尽管如此，我们还是可以轻松地将可学习的参数集成到注意力汇聚中。
 
-例如，与 [公式](02-注意力汇聚：Nadaraya-Watson 核回归.md#eq_nadaraya-watson-gaussian)略有不同，
-在下面的查询$x$和键$x_i$之间的距离乘以可学习参数$w$：
+例如，与 [公式](02-注意力汇聚：Nadaraya-Watson 核回归.md#eq_nadaraya-watson-gaussian)略有不同，在下面的查询$x$和键$x_i$之间的距离乘以可学习参数$w$：
 
 $$\begin{aligned}f(x) &= \sum_{i=1}^n \alpha(x, x_i) y_i \\&= \sum_{i=1}^n \frac{\exp\left(-\frac{1}{2}((x - x_i)w)^2\right)}{\sum_{j=1}^n \exp\left(-\frac{1}{2}((x - x_j)w)^2\right)} y_i \\&= \sum_{i=1}^n \mathrm{softmax}\left(-\frac{1}{2}((x - x_i)w)^2\right) y_i.\end{aligned}$$
 
@@ -176,18 +158,12 @@ $$\begin{aligned}f(x) &= \sum_{i=1}^n \alpha(x, x_i) y_i \\&= \sum_{i=1}^n \frac
 
 <a id="subsec_batch_dot"></a>
 
-为了更有效地计算小批量数据的注意力，
-我们可以利用深度学习开发框架中提供的批量矩阵乘法。
+为了更有效地计算小批量数据的注意力，我们可以利用深度学习开发框架中提供的批量矩阵乘法。
 
-假设第一个小批量数据包含$n$个矩阵$\mathbf{X}_1,\ldots, \mathbf{X}_n$，
-形状为$a\times b$，
-第二个小批量包含$n$个矩阵$\mathbf{Y}_1, \ldots, \mathbf{Y}_n$，
-形状为$b\times c$。
+假设第一个小批量数据包含$n$个矩阵$\mathbf{X}_1,\ldots, \mathbf{X}_n$，形状为$a\times b$，第二个小批量包含$n$个矩阵$\mathbf{Y}_1, \ldots, \mathbf{Y}_n$，形状为$b\times c$。
 它们的批量矩阵乘法得到$n$个矩阵
-$\mathbf{X}_1\mathbf{Y}_1, \ldots, \mathbf{X}_n\mathbf{Y}_n$，
-形状为$a\times c$。
-因此，[**假定两个张量的形状分别是$(n,a,b)$和$(n,b,c)$，
-它们的批量矩阵乘法输出的形状为$(n,a,c)$**]。
+$\mathbf{X}_1\mathbf{Y}_1, \ldots, \mathbf{X}_n\mathbf{Y}_n$，形状为$a\times c$。
+因此，[**假定两个张量的形状分别是$(n,a,b)$和$(n,b,c)$，它们的批量矩阵乘法输出的形状为$(n,a,c)$**]。
 
 ```python
 X = d2l.ones((2, 1, 4))
@@ -206,8 +182,7 @@ torch.bmm(weights.unsqueeze(1), values.unsqueeze(-1))
 ### 定义模型
 
 基于 [公式](02-注意力汇聚：Nadaraya-Watson 核回归.md#eq_nadaraya-watson-gaussian-para)中的
-**带参数的注意力汇聚**，使用小批量矩阵乘法，
-定义Nadaraya-Watson核回归的带参数版本为：
+**带参数的注意力汇聚**，使用小批量矩阵乘法，定义Nadaraya-Watson核回归的带参数版本为：
 
 ```python
 class NWKernelRegression(nn.Module):
@@ -229,9 +204,7 @@ class NWKernelRegression(nn.Module):
 ### 训练
 
 接下来，**将训练数据集变换为键和值**用于训练注意力模型。
-在带参数的注意力汇聚模型中，
-任何一个训练样本的输入都会和除自己以外的所有训练样本的“键－值”对进行计算，
-从而得到其对应的预测输出。
+在带参数的注意力汇聚模型中，任何一个训练样本的输入都会和除自己以外的所有训练样本的“键－值”对进行计算，从而得到其对应的预测输出。
 
 ```python
 # X_tile的形状:(n_train，n_train)，每一行都包含着相同的训练输入
@@ -278,8 +251,7 @@ plot_kernel_reg(y_hat)
 
 为什么新的模型更不平滑了呢？
 下面看一下输出结果的绘制图：
-与非参数的注意力汇聚模型相比，
-带参数的模型加入可学习的参数后，
+与非参数的注意力汇聚模型相比，带参数的模型加入可学习的参数后，
 **曲线在注意力权重较大的区域变得更不平滑**。
 
 ```python

@@ -2,12 +2,9 @@
 
 <a id="sec_convexity"></a>
 
-*凸性*（convexity）在优化算法的设计中起到至关重要的作用，
-这主要是由于在这种情况下对算法进行分析和测试要容易。
-换言之，如果算法在凸性条件设定下的效果很差，
-那通常我们很难在其他条件下看到好的结果。
-此外，即使深度学习中的优化问题通常是非凸的，
-它们也经常在局部极小值附近表现出一些凸性。
+*凸性*（convexity）在优化算法的设计中起到至关重要的作用，这主要是由于在这种情况下对算法进行分析和测试要容易。
+换言之，如果算法在凸性条件设定下的效果很差，那通常我们很难在其他条件下看到好的结果。
+此外，即使深度学习中的优化问题通常是非凸的，它们也经常在局部极小值附近表现出一些凸性。
 这可能会产生一些像 [Izmailov.Podoprikhin.Garipov.ea.2018](../17-参考文献/00-参考文献.md#bib-izmailov-podoprikhin-garipov-ea-2018)这样比较有意思的新优化变体。
 
 ```python
@@ -41,9 +38,7 @@ $$\lambda  a + (1-\lambda)  b \in \mathcal{X} \text{ 当 } a, b \in \mathcal{X}.
 
 接下来来看一下交集 [图](02-凸性(convexity).md#fig_convex_intersect)。
 假设$\mathcal{X}$和$\mathcal{Y}$是凸集，那么$\mathcal {X} \cap \mathcal{Y}$也是凸集的。
-现在考虑任意$a, b \in \mathcal{X} \cap \mathcal{Y}$，
-因为$\mathcal{X}$和$\mathcal{Y}$是凸集，
-所以连接$a$和$b$的线段包含在$\mathcal{X}$和$\mathcal{Y}$中。
+现在考虑任意$a, b \in \mathcal{X} \cap \mathcal{Y}$，因为$\mathcal{X}$和$\mathcal{Y}$是凸集，所以连接$a$和$b$的线段包含在$\mathcal{X}$和$\mathcal{Y}$中。
 鉴于此，它们也需要包含在$\mathcal {X} \cap \mathcal{Y}$中，从而证明我们的定理。
 
 ![两个凸集的交集是凸的。](../img/convex-intersect.svg)
@@ -54,10 +49,8 @@ $$\lambda  a + (1-\lambda)  b \in \mathcal{X} \text{ 当 } a, b \in \mathcal{X}.
 
 我们可以毫不费力地进一步得到这样的结果：
 给定凸集$\mathcal{X}_i$，它们的交集$\cap_{i} \mathcal{X}_i$是凸的。
-但是反向是不正确的，考虑两个不相交的集合$\mathcal{X} \cap \mathcal{Y} = \emptyset$，
-取$a \in \mathcal{X}$和$b \in \mathcal{Y}$。
-因为我们假设$\mathcal{X} \cap \mathcal{Y} = \emptyset$，
-在 [图](02-凸性(convexity).md#fig_nonconvex)中连接$a$和$b$的线段需要包含一部分既不在$\mathcal{X}$也不在$\mathcal{Y}$中。
+但是反向是不正确的，考虑两个不相交的集合$\mathcal{X} \cap \mathcal{Y} = \emptyset$，取$a \in \mathcal{X}$和$b \in \mathcal{Y}$。
+因为我们假设$\mathcal{X} \cap \mathcal{Y} = \emptyset$，在 [图](02-凸性(convexity).md#fig_nonconvex)中连接$a$和$b$的线段需要包含一部分既不在$\mathcal{X}$也不在$\mathcal{Y}$中。
 因此线段也不在$\mathcal{X} \cup \mathcal{Y}$中，因此证明了凸集的并集不一定是凸的，即*非凸*（nonconvex）的。
 
 ![两个凸集的并集不一定是凸的。](../img/nonconvex.svg)
@@ -178,13 +171,11 @@ $$f(\lambda x + (1-\lambda) x') \leq \lambda f(x) + (1-\lambda) f(x') \leq b.$$
 ### 凸性和二阶导数
 
 当一个函数的二阶导数$f: \mathbb{R}^n \rightarrow \mathbb{R}$存在时，我们很容易检查这个函数的凸性。
-我们需要做的就是检查$\nabla^2f \succeq 0$，
-即对于所有$\mathbf{x} \in \mathbb{R}^n$，$\mathbf{x}^\top \mathbf{H} \mathbf{x} \geq 0$.
+我们需要做的就是检查$\nabla^2f \succeq 0$，即对于所有$\mathbf{x} \in \mathbb{R}^n$，$\mathbf{x}^\top \mathbf{H} \mathbf{x} \geq 0$.
 例如，函数$f(\mathbf{x}) = \frac{1}{2} \|\mathbf{x}\|^2$是凸的，因为$\nabla^2 f = \mathbf{1}$，即其导数是单位矩阵。
 
 更正式地讲，$f$为凸函数，当且仅当任意二次可微一维函数$f: \mathbb{R}^n \rightarrow \mathbb{R}$是凸的。
-对于任意二次可微多维函数$f: \mathbb{R}^{n} \rightarrow \mathbb{R}$，
-它是凸的当且仅当它的Hessian$\nabla^2f\succeq 0$。
+对于任意二次可微多维函数$f: \mathbb{R}^{n} \rightarrow \mathbb{R}$，它是凸的当且仅当它的Hessian$\nabla^2f\succeq 0$。
 
 首先，我们来证明一下一维情况。
 为了证明凸函数的$f''(x) \geq 0$，我们使用：
@@ -195,10 +186,8 @@ $$\frac{1}{2} f(x + \epsilon) + \frac{1}{2} f(x - \epsilon) \geq f\left(\frac{x 
 
 $$f''(x) = \lim_{\epsilon \to 0} \frac{f(x+\epsilon) + f(x - \epsilon) - 2f(x)}{\epsilon^2} \geq 0.$$
 
-为了证明$f'' \geq 0$可以推导$f$是凸的，
-我们使用这样一个事实：$f'' \geq 0$意味着$f'$是一个单调的非递减函数。
-假设$a < x < b$是$\mathbb{R}$中的三个点，
-其中，$x = (1-\lambda)a + \lambda b$且$\lambda \in (0, 1)$.
+为了证明$f'' \geq 0$可以推导$f$是凸的，我们使用这样一个事实：$f'' \geq 0$意味着$f'$是一个单调的非递减函数。
+假设$a < x < b$是$\mathbb{R}$中的三个点，其中，$x = (1-\lambda)a + \lambda b$且$\lambda \in (0, 1)$.
 根据中值定理，存在$\alpha \in [a, x]$，$\beta \in [x, b]$，使得
 $$f'(\alpha) = \frac{f(x) - f(a)}{x-a} \text{ 且 } f'(\beta) = \frac{f(b) - f(x)}{b-x}.$$
 
@@ -216,12 +205,11 @@ $$\lambda f(b) + (1-\lambda)f(a) \geq f((1-\lambda)a + \lambda b),$$
 $f: \mathbb{R}^n \rightarrow \mathbb{R}$
 是凸的当且仅当对于所有$\mathbf{x}, \mathbf{y} \in \mathbb{R}^n$
 
-$$g(z) \stackrel{\mathrm{def}}{=} f(z \mathbf{x} + (1-z)  \mathbf{y}) \text{ where } z \in [0,1]$$ 
+$$g(z) \stackrel{\mathrm{def}}{=} f(z \mathbf{x} + (1-z)  \mathbf{y}) \text{ where } z \in [0,1]$$
 
 是凸的。
 
-为了证明$f$的凸性意味着$g$是凸的，
-我们可以证明，对于所有的$a，b，\lambda \in[0，1]$（这样有$0 \leq \lambda a + (1-\lambda) b \leq 1$），
+为了证明$f$的凸性意味着$g$是凸的，我们可以证明，对于所有的$a，b，\lambda \in[0，1]$（这样有$0 \leq \lambda a + (1-\lambda) b \leq 1$），
 
 $$\begin{aligned} &g(\lambda a + (1-\lambda) b)\\
 =&f\left(\left(\lambda a + (1-\lambda) b\right)\mathbf{x} + \left(1-\lambda a - (1-\lambda) b\right)\mathbf{y} \right)\\
@@ -241,8 +229,7 @@ $$\begin{aligned} &f(\lambda \mathbf{x} + (1-\lambda) \mathbf{y})\\
 
 最后，利用上面的引理和一维情况的结果，我们可以证明多维情况：
 多维函数$f:\mathbb{R}^n\rightarrow\mathbb{R}$是凸函数，当且仅当$g(z) \stackrel{\mathrm{def}}{=} f(z \mathbf{x} + (1-z)  \mathbf{y})$是凸的，这里$z \in [0,1]$，$\mathbf{x}, \mathbf{y} \in \mathbb{R}^n$。
-根据一维情况，
-此条成立的条件为，当且仅当对于所有$\mathbf{x}, \mathbf{y} \in \mathbb{R}^n$，
+根据一维情况，此条成立的条件为，当且仅当对于所有$\mathbf{x}, \mathbf{y} \in \mathbb{R}^n$，
 $g'' = (\mathbf{x} - \mathbf{y})^\top \mathbf{H}(\mathbf{x} - \mathbf{y}) \geq 0$（$\mathbf{H} \stackrel{\mathrm{def}}{=} \nabla^2f$）。
 这相当于根据半正定矩阵的定义，$\mathbf{H} \succeq 0$。
 
@@ -322,8 +309,7 @@ $$\mathrm{Proj}_\mathcal{X}(\mathbf{x}) = \mathop{\mathrm{argmin}}_{\mathbf{x}' 
 虽然对$L_2$的球面来说，方向保持不变，但一般情况下不需要这样。
 
 凸投影的一个用途是计算稀疏权重向量。
-在本例中，我们将权重向量投影到一个$L_1$的球上，
-这是 [图](02-凸性(convexity).md#fig_projections)中菱形例子的一个广义版本。
+在本例中，我们将权重向量投影到一个$L_1$的球上，这是 [图](02-凸性(convexity).md#fig_projections)中菱形例子的一个广义版本。
 
 ## 小结
 
@@ -336,7 +322,7 @@ $$\mathrm{Proj}_\mathcal{X}(\mathbf{x}) = \mathop{\mathrm{argmin}}_{\mathbf{x}' 
 * 凸约束可以通过拉格朗日函数来添加。在实践中，只需在目标函数中加上一个惩罚就可以了。
 * 投影映射到凸集中最接近原始点的点。
 
-## 练习 
+## 练习
 
 1. 假设我们想要通过绘制集合内点之间的所有直线并检查这些直线是否包含来验证集合的凸性。i.证明只检查边界上的点是充分的。ii.证明只检查集合的顶点是充分的。
 

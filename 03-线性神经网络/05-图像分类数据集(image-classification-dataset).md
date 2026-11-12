@@ -31,8 +31,7 @@ mnist_test = torchvision.datasets.FashionMNIST(
     root="../data", train=False, transform=trans, download=True)
 ```
 
-Fashion-MNIST由10个类别的图像组成，
-每个类别由*训练数据集*（train dataset）中的6000张图像
+Fashion-MNIST由10个类别的图像组成，每个类别由*训练数据集*（train dataset）中的6000张图像
 和*测试数据集*（test dataset）中的1000张图像组成。
 因此，训练集和测试集分别包含60000和10000张图像。
 测试数据集不会用于训练，只用于评估模型性能。

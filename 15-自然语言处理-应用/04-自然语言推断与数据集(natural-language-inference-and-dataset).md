@@ -7,8 +7,7 @@
 ## 自然语言推断
 
 *自然语言推断*（natural language inference）主要研究
-*假设*（hypothesis）是否可以从*前提*（premise）中推断出来，
-其中两者都是文本序列。
+*假设*（hypothesis）是否可以从*前提*（premise）中推断出来，其中两者都是文本序列。
 换言之，自然语言推断决定了一对文本序列之间的逻辑关系。这类关系通常分为三种类型：
 
 * *蕴涵*（entailment）：假设可以从前提中推断出来。
@@ -65,7 +64,7 @@ def read_snli(data_dir, is_train):
     """将SNLI数据集解析为前提、假设和标签"""
     def extract_text(s):
         # 删除我们不会使用的信息
-        s = re.sub('\\(', '', s) 
+        s = re.sub('\\(', '', s)
         s = re.sub('\\)', '', s)
         # 用一个空格替换两个或多个连续的空格
         s = re.sub('\\s{2,}', ' ', s)

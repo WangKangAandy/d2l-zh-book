@@ -80,7 +80,7 @@ class RNNModel(nn.Module):
         if not isinstance(self.rnn, nn.LSTM):
             # nn.GRU以张量作为隐状态
             return  torch.zeros((self.num_directions * self.rnn.num_layers,
-                                 batch_size, self.num_hiddens), 
+                                 batch_size, self.num_hiddens),
                                 device=device)
         else:
             # nn.LSTM以元组作为隐状态
@@ -112,8 +112,7 @@ num_epochs, lr = 500, 1
 d2l.train_ch8(net, train_iter, vocab, lr, num_epochs, device)
 ```
 
-与上一节相比，由于深度学习框架的高级API对代码进行了更多的优化，
-该模型在较短的时间内达到了较低的困惑度。
+与上一节相比，由于深度学习框架的高级API对代码进行了更多的优化，该模型在较短的时间内达到了较低的困惑度。
 
 ## 小结
 

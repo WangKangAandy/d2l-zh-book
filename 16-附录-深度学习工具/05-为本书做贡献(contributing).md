@@ -3,15 +3,12 @@
 <a id="sec_how_to_contribute"></a>
 
 读者们的投稿大大帮助我们改进了本书的质量。
-如果你发现笔误、无效的链接、一些你认为我们遗漏了引文的地方，
-代码看起来不优雅，或者解释不清楚的地方，请回复我们以帮助读者。
-在常规书籍中，两次印刷之间的间隔（即修订笔误的间隔）常常需要几年，
-但这本书的改进通常需要几小时到几天的时间。
+如果你发现笔误、无效的链接、一些你认为我们遗漏了引文的地方，代码看起来不优雅，或者解释不清楚的地方，请回复我们以帮助读者。
+在常规书籍中，两次印刷之间的间隔（即修订笔误的间隔）常常需要几年，但这本书的改进通常需要几小时到几天的时间。
 由于版本控制和持续自动集成（CI）测试，这一切颇为高效。
 为此，你需要向gihub存储库提交一个
 [pull request](https://github.com/d2l-ai/d2l-en/pulls)。
-当你的pull请求被作者合并到代码库中时，
-你将成为[贡献者](https://github.com/d2l-ai/d2l-en/graphs/contributors)。
+当你的pull请求被作者合并到代码库中时，你将成为[贡献者](https://github.com/d2l-ai/d2l-en/graphs/contributors)。
 
 ## 提交微小更改
 
@@ -34,22 +31,17 @@
 ## 大量文本或代码修改
 
 如果你计划修改大量文本或代码，那么你需要更多地了解本书使用的格式。
-源文件基于[markdown格式](https://daringfireball.net/projects/markdown/syntax)，
-并通过[d2lbook](http://book.d2l.ai/user/markdown.html)包提供了一组扩展，
-例如引用公式、图像、章节和引文。
+源文件基于[markdown格式](https://daringfireball.net/projects/markdown/syntax)，并通过[d2lbook](http://book.d2l.ai/user/markdown.html)包提供了一组扩展，例如引用公式、图像、章节和引文。
 你可以使用任何markdown编辑器打开这些文件并进行更改。
 
-如果你想要更改代码，我们建议你使用Jupyter Notebook打开这些标记文件，
-如 [使用Jupyter Notebook](01-使用Jupyter Notebook.md#sec_jupyter)中所述。
+如果你想要更改代码，我们建议你使用Jupyter Notebook打开这些标记文件，如 [使用Jupyter Notebook](01-使用Jupyter Notebook.md#sec_jupyter)中所述。
 这样你就可以运行并测试你的更改。
 请记住在提交更改之前清除所有输出，我们的CI系统将执行你更新的部分以生成输出。
 
-某些部分可能支持多个框架实现。如果你添加的新代码块不是使用mxnet，
-请使用`#@tab`来标记代码块的起始行。
+某些部分可能支持多个框架实现。如果你添加的新代码块不是使用mxnet，请使用`#@tab`来标记代码块的起始行。
 例如`#@tab pytorch`用于一个PyTorch代码块，
 `#@tab tensorflow`用于一个TensorFlow代码块，
-`#@tab paddle`用于一个PaddlePaddle代码块，
-或者`#@tab all`是所有实现的共享代码块。
+`#@tab paddle`用于一个PaddlePaddle代码块，或者`#@tab all`是所有实现的共享代码块。
 你可以参考[d2lbook](http://book.d2l.ai/user/code_tabs.html)包了解更多信息。
 
 ## 提交主要更改
@@ -70,8 +62,7 @@
 ### 安装Git
 
 Git开源书籍描述了[如何安装git](https://git-scm.com/book/en/v2)。
-这通常通过Ubuntu Linux上的`apt install git`，
-在MacOS上安装Xcode开发人员工具或使用gihub的
+这通常通过Ubuntu Linux上的`apt install git`，在MacOS上安装Xcode开发人员工具或使用gihub的
 [桌面客户端](https://desktop.github.com)来实现。
 如果你没有GitHub帐户，则需要注册一个帐户。
 
@@ -87,8 +78,7 @@ Git开源书籍描述了[如何安装git](https://git-scm.com/book/en/v2)。
 
 <a id="fig_git_fork"></a>
 
-现在，本书的代码库将被分叉（即复制）到你的用户名，
-例如`astonzhang/d2l-en`显示在 [图](05-为本书做贡献(contributing).md#fig_git_forked)的左上角。
+现在，本书的代码库将被分叉（即复制）到你的用户名，例如`astonzhang/d2l-en`显示在 [图](05-为本书做贡献(contributing).md#fig_git_forked)的左上角。
 
 ![分叉代码存储库](../img/git-forked.png)
 

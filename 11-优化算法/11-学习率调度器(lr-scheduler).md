@@ -154,8 +154,7 @@ train(net, train_iter, test_iter, num_epochs, loss, trainer, device,
 ### 单因子调度器
 
 多项式衰减的一种替代方案是乘法衰减，即$\eta_{t+1} \leftarrow \eta_t \cdot \alpha$其中$\alpha \in (0, 1)$。
-为了防止学习率衰减到一个合理的下界之下，
-更新方程经常修改为$\eta_{t+1} \leftarrow \mathop{\mathrm{max}}(\eta_{\mathrm{min}}, \eta_t \cdot \alpha)$。
+为了防止学习率衰减到一个合理的下界之下，更新方程经常修改为$\eta_{t+1} \leftarrow \mathop{\mathrm{max}}(\eta_{\mathrm{min}}, \eta_t \cdot \alpha)$。
 
 ```python
 class FactorScheduler:
@@ -177,8 +176,7 @@ d2l.plot(d2l.arange(50), [scheduler(t) for t in range(50)])
 ### 多因子调度器
 
 训练深度网络的常见策略之一是保持学习率为一组分段的常量，并且不时地按给定的参数对学习率做乘法衰减。
-具体地说，给定一组降低学习率的时间点，例如$s = \{5, 10, 20\}$，
-每当$t \in s$时，降低$\eta_{t+1} \leftarrow \eta_t \cdot \alpha$。
+具体地说，给定一组降低学习率的时间点，例如$s = \{5, 10, 20\}$，每当$t \in s$时，降低$\eta_{t+1} \leftarrow \eta_t \cdot \alpha$。
 假设每步中的值减半，我们可以按如下方式实现这一点。
 
 ```python
@@ -260,8 +258,7 @@ train(net, train_iter, test_iter, num_epochs, loss, trainer, device,
 
 在某些情况下，初始化参数不足以得到良好的解。
 这对某些高级网络设计来说尤其棘手，可能导致不稳定的优化结果。
-对此，一方面，我们可以选择一个足够小的学习率，
-从而防止一开始发散，然而这样进展太缓慢。
+对此，一方面，我们可以选择一个足够小的学习率，从而防止一开始发散，然而这样进展太缓慢。
 另一方面，较高的学习率最初就会导致发散。
 
 解决这种困境的一个相当简单的解决方法是使用预热期，在此期间学习率将增加至初始最大值，然后冷却直到优化过程结束。
