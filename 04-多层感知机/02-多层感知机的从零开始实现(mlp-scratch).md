@@ -2,11 +2,9 @@
 
 <a id="sec_mlp_scratch"></a>
 
-我们已经在 [多层感知机](01-多层感知机(mlp).md#sec_mlp)中描述了多层感知机（MLP），
-现在让我们尝试自己实现一个多层感知机。
+我们已经在 [多层感知机](01-多层感知机(mlp).md#sec_mlp)中描述了多层感知机（MLP），现在让我们尝试自己实现一个多层感知机。
 为了与之前softmax回归（ [softmax回归的从零开始实现](../03-线性神经网络/06-softmax回归的从零开始实现(softmax-regression-scratch).md#sec_softmax_scratch) ）
-获得的结果进行比较，
-我们将继续使用Fashion-MNIST图像分类数据集
+获得的结果进行比较，我们将继续使用Fashion-MNIST图像分类数据集
 （ [图像分类数据集](../03-线性神经网络/05-图像分类数据集(image-classification-dataset).md#sec_fashion_mnist)）。
 
 ```python
@@ -25,11 +23,9 @@ train_iter, test_iter = d2l.load_data_fashion_mnist(batch_size)
 回想一下，Fashion-MNIST中的每个图像由
 $28 \times 28 = 784$个灰度像素值组成。
 所有图像共分为10个类别。
-忽略像素之间的空间结构，
-我们可以将每个图像视为具有784个输入特征
+忽略像素之间的空间结构，我们可以将每个图像视为具有784个输入特征
 和10个类的简单分类数据集。
-首先，我们将[**实现一个具有单隐藏层的多层感知机，
-它包含256个隐藏单元**]。
+首先，我们将[**实现一个具有单隐藏层的多层感知机，它包含256个隐藏单元**]。
 注意，我们可以将这两个变量都视为超参数。
 通常，我们选择2的若干次幂作为层的宽度。
 因为内存在硬件中的分配和寻址方式，这么做往往可以在计算上更高效。
@@ -53,9 +49,7 @@ params = [W1, b1, W2, b2]
 
 ## 激活函数
 
-为了确保我们对模型的细节了如指掌，
-我们将**实现ReLU激活函数**，
-而不是直接调用内置的`relu`函数。
+为了确保我们对模型的细节了如指掌，我们将**实现ReLU激活函数**，而不是直接调用内置的`relu`函数。
 
 ```python
 def relu(X):
@@ -65,8 +59,7 @@ def relu(X):
 
 ## 模型
 
-因为我们忽略了空间结构，
-所以我们使用`reshape`将每个二维图像转换为一个长度为`num_inputs`的向量。
+因为我们忽略了空间结构，所以我们使用`reshape`将每个二维图像转换为一个长度为`num_inputs`的向量。
 只需几行代码就可以**实现我们的模型**。
 
 ```python
@@ -78,8 +71,7 @@ def net(X):
 
 ## 损失函数
 
-由于我们已经从零实现过softmax函数（ [softmax回归的从零开始实现](../03-线性神经网络/06-softmax回归的从零开始实现(softmax-regression-scratch).md#sec_softmax_scratch)），
-因此在这里我们直接使用高级API中的内置函数来计算softmax和交叉熵损失。
+由于我们已经从零实现过softmax函数（ [softmax回归的从零开始实现](../03-线性神经网络/06-softmax回归的从零开始实现(softmax-regression-scratch).md#sec_softmax_scratch)），因此在这里我们直接使用高级API中的内置函数来计算softmax和交叉熵损失。
 回想一下我们之前在 [重新审视Softmax的实现](../03-线性神经网络/07-softmax回归的简洁实现(softmax-regression-concise).md#subsec_softmax-implementation-revisited)中
 对这些复杂问题的讨论。
 我们鼓励感兴趣的读者查看损失函数的源代码，以加深对实现细节的了解。
@@ -91,8 +83,7 @@ loss = nn.CrossEntropyLoss(reduction='none')
 ## 训练
 
 幸运的是，**多层感知机的训练过程与softmax回归的训练过程完全相同**。
-可以直接调用`d2l`包的`train_ch3`函数（参见 [softmax回归的从零开始实现](../03-线性神经网络/06-softmax回归的从零开始实现(softmax-regression-scratch).md#sec_softmax_scratch) ），
-将迭代周期数设置为10，并将学习率设置为0.1.
+可以直接调用`d2l`包的`train_ch3`函数（参见 [softmax回归的从零开始实现](../03-线性神经网络/06-softmax回归的从零开始实现(softmax-regression-scratch).md#sec_softmax_scratch) ），将迭代周期数设置为10，并将学习率设置为0.1.
 
 ```python
 num_epochs, lr = 10, 0.1

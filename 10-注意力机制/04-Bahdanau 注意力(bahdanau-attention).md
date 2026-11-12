@@ -3,20 +3,15 @@
 <a id="sec_seq2seq_attention"></a>
 
  [序列到序列学习（seq2seq）](../09-现代循环神经网络/07-序列到序列学习（seq2seq）.md#sec_seq2seq)中探讨了机器翻译问题：
-通过设计一个基于两个循环神经网络的编码器-解码器架构，
-用于序列到序列学习。
-具体来说，循环神经网络编码器将长度可变的序列转换为固定形状的上下文变量，
-然后循环神经网络解码器根据生成的词元和上下文变量
+通过设计一个基于两个循环神经网络的编码器-解码器架构，用于序列到序列学习。
+具体来说，循环神经网络编码器将长度可变的序列转换为固定形状的上下文变量，然后循环神经网络解码器根据生成的词元和上下文变量
 按词元生成输出（目标）序列词元。
-然而，即使并非所有输入（源）词元都对解码某个词元都有用，
-在每个解码步骤中仍使用编码*相同*的上下文变量。
+然而，即使并非所有输入（源）词元都对解码某个词元都有用，在每个解码步骤中仍使用编码*相同*的上下文变量。
 有什么方法能改变上下文变量呢？
 
 我们试着从 [Graves.2013](../17-参考文献/00-参考文献.md#bib-graves-2013)中找到灵感：
 在为给定文本序列生成手写的挑战中，
-Graves设计了一种可微注意力模型，
-将文本字符与更长的笔迹对齐，
-其中对齐方式仅向一个方向移动。
+Graves设计了一种可微注意力模型，将文本字符与更长的笔迹对齐，其中对齐方式仅向一个方向移动。
 受学习对齐想法的启发，Bahdanau等人提出了一个没有严格单向对齐限制的
 可微注意力模型 [Bahdanau.Cho.Bengio.2014](../17-参考文献/00-参考文献.md#bib-bahdanau-cho-bengio-2014)。
 在预测词元时，如果不是所有输入词元都相关，模型将仅对齐（或参与）输入序列中与当前预测相关的部分。这是通过将上下文变量视为注意力集中的输出来实现的。
@@ -25,17 +20,13 @@ Graves设计了一种可微注意力模型，
 
 下面描述的Bahdanau注意力模型
 将遵循 [序列到序列学习（seq2seq）](../09-现代循环神经网络/07-序列到序列学习（seq2seq）.md#sec_seq2seq)中的相同符号表达。
-这个新的基于注意力的模型与 [序列到序列学习（seq2seq）](../09-现代循环神经网络/07-序列到序列学习（seq2seq）.md#sec_seq2seq)中的模型相同，
-只不过 [公式](../09-现代循环神经网络/07-序列到序列学习（seq2seq）.md#eq_seq2seq_s_t)中的上下文变量$\mathbf{c}$
+这个新的基于注意力的模型与 [序列到序列学习（seq2seq）](../09-现代循环神经网络/07-序列到序列学习（seq2seq）.md#sec_seq2seq)中的模型相同，只不过 [公式](../09-现代循环神经网络/07-序列到序列学习（seq2seq）.md#eq_seq2seq_s_t)中的上下文变量$\mathbf{c}$
 在任何解码时间步$t'$都会被$\mathbf{c}_{t'}$替换。
-假设输入序列中有$T$个词元，
-解码时间步$t'$的上下文变量是注意力集中的输出：
+假设输入序列中有$T$个词元，解码时间步$t'$的上下文变量是注意力集中的输出：
 
 $$\mathbf{c}_{t'} = \sum_{t=1}^T \alpha(\mathbf{s}_{t' - 1}, \mathbf{h}_t) \mathbf{h}_t,$$
 
-其中，时间步$t' - 1$时的解码器隐状态$\mathbf{s}_{t' - 1}$是查询，
-编码器隐状态$\mathbf{h}_t$既是键，也是值，
-注意力权重$\alpha$是使用 [公式](03-注意力评分函数(attention-scoring-functions).md#eq_attn-scoring-alpha)
+其中，时间步$t' - 1$时的解码器隐状态$\mathbf{s}_{t' - 1}$是查询，编码器隐状态$\mathbf{h}_t$既是键，也是值，注意力权重$\alpha$是使用 [公式](03-注意力评分函数(attention-scoring-functions).md#eq_attn-scoring-alpha)
 所定义的加性注意力打分函数计算的。
 
 与 [图](../09-现代循环神经网络/07-序列到序列学习（seq2seq）.md#fig_seq2seq_details)中的循环神经网络编码器-解码器架构略有不同，
@@ -56,8 +47,7 @@ from torch import nn
 
 下面看看如何定义Bahdanau注意力，实现循环神经网络编码器-解码器。
 其实，我们只需重新定义解码器即可。
-为了更方便地显示学习的注意力权重，
-以下`AttentionDecoder`类定义了**带有注意力机制解码器的基本接口**。
+为了更方便地显示学习的注意力权重，以下`AttentionDecoder`类定义了**带有注意力机制解码器的基本接口**。
 
 ```python
 #@save
@@ -126,7 +116,7 @@ class Seq2SeqAttentionDecoder(AttentionDecoder):
         outputs = self.dense(torch.cat(outputs, dim=0))
         return outputs.permute(1, 0, 2), [enc_outputs, hidden_state,
                                           enc_valid_lens]
-    
+
     @property
     def attention_weights(self):
         return self._attention_weights
@@ -149,9 +139,7 @@ output.shape, len(state), state[0].shape, len(state[1]), state[1][0].shape
 
 ## **训练**
 
-与 [训练](../09-现代循环神经网络/07-序列到序列学习（seq2seq）.md#sec_seq2seq_training)类似，
-我们在这里指定超参数，实例化一个带有Bahdanau注意力的编码器和解码器，
-并对这个模型进行机器翻译训练。
+与 [训练](../09-现代循环神经网络/07-序列到序列学习（seq2seq）.md#sec_seq2seq_training)类似，我们在这里指定超参数，实例化一个带有Bahdanau注意力的编码器和解码器，并对这个模型进行机器翻译训练。
 由于新增的注意力机制，训练要比没有注意力机制的
  [训练](../09-现代循环神经网络/07-序列到序列学习（seq2seq）.md#sec_seq2seq_training)慢得多。
 

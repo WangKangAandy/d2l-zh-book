@@ -2,8 +2,7 @@
 
 <a id="sec_rcnn"></a>
 
-除了 [单发多框检测（SSD）](07-单发多框检测（SSD）.md#sec_ssd)中描述的单发多框检测之外，
-区域卷积神经网络（region-based CNN或regions with CNN features，R-CNN） [Girshick.Donahue.Darrell.ea.2014](../17-参考文献/00-参考文献.md#bib-girshick-donahue-darrell-ea-2014)也是将深度模型应用于目标检测的开创性工作之一。
+除了 [单发多框检测（SSD）](07-单发多框检测（SSD）.md#sec_ssd)中描述的单发多框检测之外，区域卷积神经网络（region-based CNN或regions with CNN features，R-CNN） [Girshick.Donahue.Darrell.ea.2014](../17-参考文献/00-参考文献.md#bib-girshick-donahue-darrell-ea-2014)也是将深度模型应用于目标检测的开创性工作之一。
 本节将介绍R-CNN及其一系列改进方法：快速的R-CNN（Fast R-CNN） [Girshick.2015](../17-参考文献/00-参考文献.md#bib-girshick-2015)、更快的R-CNN（Faster R-CNN） [Ren.He.Girshick.ea.2015](../17-参考文献/00-参考文献.md#bib-ren-he-girshick-ea-2015)和掩码R-CNN（Mask R-CNN） [He.Gkioxari.Dollar.ea.2017](../17-参考文献/00-参考文献.md#bib-he-gkioxari-dollar-ea-2017)。
 限于篇幅，我们只着重介绍这些模型的设计思路。
 

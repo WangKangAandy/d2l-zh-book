@@ -3,13 +3,11 @@
 <a id="sec_self-attention-and-positional-encoding"></a>
 
 在深度学习中，经常使用卷积神经网络（CNN）或循环神经网络（RNN）对序列进行编码。
-想象一下，有了注意力机制之后，我们将词元序列输入注意力池化中，
-以便同一组词元同时充当查询、键和值。
+想象一下，有了注意力机制之后，我们将词元序列输入注意力池化中，以便同一组词元同时充当查询、键和值。
 具体来说，每个查询都会关注所有的键－值对并生成一个注意力输出。
 由于查询、键和值来自同一组输入，因此被称为
 *自注意力*（self-attention）
- [Lin.Feng.Santos.ea.2017](../17-参考文献/00-参考文献.md#bib-lin-feng-santos-ea-2017)、[Vaswani.Shazeer.Parmar.ea.2017](../17-参考文献/00-参考文献.md#bib-vaswani-shazeer-parmar-ea-2017)，
-也被称为*内部注意力*（intra-attention） [Cheng.Dong.Lapata.2016](../17-参考文献/00-参考文献.md#bib-cheng-dong-lapata-2016)、[Parikh.Tackstrom.Das.ea.2016](../17-参考文献/00-参考文献.md#bib-parikh-tackstrom-das-ea-2016)、[Paulus.Xiong.Socher.2017](../17-参考文献/00-参考文献.md#bib-paulus-xiong-socher-2017)。
+ [Lin.Feng.Santos.ea.2017](../17-参考文献/00-参考文献.md#bib-lin-feng-santos-ea-2017)、[Vaswani.Shazeer.Parmar.ea.2017](../17-参考文献/00-参考文献.md#bib-vaswani-shazeer-parmar-ea-2017)，也被称为*内部注意力*（intra-attention） [Cheng.Dong.Lapata.2016](../17-参考文献/00-参考文献.md#bib-cheng-dong-lapata-2016)、[Parikh.Tackstrom.Das.ea.2016](../17-参考文献/00-参考文献.md#bib-parikh-tackstrom-das-ea-2016)、[Paulus.Xiong.Socher.2017](../17-参考文献/00-参考文献.md#bib-paulus-xiong-socher-2017)。
 本节将使用自注意力进行序列编码，以及如何使用序列的顺序作为补充信息。
 
 ```python
@@ -21,16 +19,14 @@ from torch import nn
 
 ## **自注意力**
 
-给定一个由词元组成的输入序列$\mathbf{x}_1, \ldots, \mathbf{x}_n$，
-其中任意$\mathbf{x}_i \in \mathbb{R}^d$（$1 \leq i \leq n$）。
+给定一个由词元组成的输入序列$\mathbf{x}_1, \ldots, \mathbf{x}_n$，其中任意$\mathbf{x}_i \in \mathbb{R}^d$（$1 \leq i \leq n$）。
 该序列的自注意力输出为一个长度相同的序列
 $\mathbf{y}_1, \ldots, \mathbf{y}_n$，其中：
 
 $$\mathbf{y}_i = f(\mathbf{x}_i, (\mathbf{x}_1, \mathbf{x}_1), \ldots, (\mathbf{x}_n, \mathbf{x}_n)) \in \mathbb{R}^d$$
 
 根据 [公式](03-注意力评分函数(attention-scoring-functions).md#eq_attn-pooling)中定义的注意力汇聚函数$f$。
-下面的代码片段是基于多头注意力对一个张量完成自注意力的计算，
-张量的形状为（批量大小，时间步的数目或词元序列的长度，$d$）。
+下面的代码片段是基于多头注意力对一个张量完成自注意力的计算，张量的形状为（批量大小，时间步的数目或词元序列的长度，$d$）。
 输出与输入的张量形状相同。
 
 ```python
@@ -60,40 +56,31 @@ attention(X, X, X, valid_lens).shape
 
 考虑一个卷积核大小为$k$的卷积层。
 在后面的章节将提供关于使用卷积神经网络处理序列的更多详细信息。
-目前只需要知道的是，由于序列长度是$n$，输入和输出的通道数量都是$d$，
-所以卷积层的计算复杂度为$\mathcal{O}(knd^2)$。
-如 [图](06-自注意力和位置编码(self-attention-and-positional-encoding).md#fig_cnn-rnn-self-attention)所示，
-卷积神经网络是分层的，因此为有$\mathcal{O}(1)$个顺序操作，
-最大路径长度为$\mathcal{O}(n/k)$。
+目前只需要知道的是，由于序列长度是$n$，输入和输出的通道数量都是$d$，所以卷积层的计算复杂度为$\mathcal{O}(knd^2)$。
+如 [图](06-自注意力和位置编码(self-attention-and-positional-encoding).md#fig_cnn-rnn-self-attention)所示，卷积神经网络是分层的，因此为有$\mathcal{O}(1)$个顺序操作，最大路径长度为$\mathcal{O}(n/k)$。
 例如，$\mathbf{x}_1$和$\mathbf{x}_5$处于
  [图](06-自注意力和位置编码(self-attention-and-positional-encoding).md#fig_cnn-rnn-self-attention)中卷积核大小为3的双层卷积神经网络的感受野内。
 
 当更新循环神经网络的隐状态时，
 $d \times d$权重矩阵和$d$维隐状态的乘法计算复杂度为$\mathcal{O}(d^2)$。
 由于序列长度为$n$，因此循环神经网络层的计算复杂度为$\mathcal{O}(nd^2)$。
-根据 [图](06-自注意力和位置编码(self-attention-and-positional-encoding).md#fig_cnn-rnn-self-attention)，
-有$\mathcal{O}(n)$个顺序操作无法并行化，最大路径长度也是$\mathcal{O}(n)$。
+根据 [图](06-自注意力和位置编码(self-attention-and-positional-encoding).md#fig_cnn-rnn-self-attention)，有$\mathcal{O}(n)$个顺序操作无法并行化，最大路径长度也是$\mathcal{O}(n)$。
 
 在自注意力中，查询、键和值都是$n \times d$矩阵。
-考虑 [公式](03-注意力评分函数(attention-scoring-functions).md#eq_softmax_qk_v)中缩放的”点－积“注意力，
-其中$n \times d$矩阵乘以$d \times n$矩阵。
+考虑 [公式](03-注意力评分函数(attention-scoring-functions).md#eq_softmax_qk_v)中缩放的”点－积“注意力，其中$n \times d$矩阵乘以$d \times n$矩阵。
 之后输出的$n \times n$矩阵乘以$n \times d$矩阵。
 因此，自注意力具有$\mathcal{O}(n^2d)$计算复杂性。
-正如在 [图](06-自注意力和位置编码(self-attention-and-positional-encoding).md#fig_cnn-rnn-self-attention)中所讲，
-每个词元都通过自注意力直接连接到任何其他词元。
-因此，有$\mathcal{O}(1)$个顺序操作可以并行计算，
-最大路径长度也是$\mathcal{O}(1)$。
+正如在 [图](06-自注意力和位置编码(self-attention-and-positional-encoding).md#fig_cnn-rnn-self-attention)中所讲，每个词元都通过自注意力直接连接到任何其他词元。
+因此，有$\mathcal{O}(1)$个顺序操作可以并行计算，最大路径长度也是$\mathcal{O}(1)$。
 
-总而言之，卷积神经网络和自注意力都拥有并行计算的优势，
-而且自注意力的最大路径长度最短。
+总而言之，卷积神经网络和自注意力都拥有并行计算的优势，而且自注意力的最大路径长度最短。
 但是因为其计算复杂度是关于序列长度的二次方，所以在很长的序列中计算会非常慢。
 
 ## **位置编码**
 
 <a id="subsec_positional-encoding"></a>
 
-在处理词元序列时，循环神经网络是逐个的重复地处理词元的，
-而自注意力则因为并行计算而放弃了顺序操作。
+在处理词元序列时，循环神经网络是逐个的重复地处理词元的，而自注意力则因为并行计算而放弃了顺序操作。
 为了使用序列的顺序信息，通过在输入表示中添加
 *位置编码*（positional encoding）来注入绝对的或相对的位置信息。
 位置编码可以通过学习得到也可以直接固定得到。
@@ -103,8 +90,7 @@ $d \times d$权重矩阵和$d$维隐状态的乘法计算复杂度为$\mathcal{O
 假设输入表示$\mathbf{X} \in \mathbb{R}^{n \times d}$
 包含一个序列中$n$个词元的$d$维嵌入表示。
 位置编码使用相同形状的位置嵌入矩阵
-$\mathbf{P} \in \mathbb{R}^{n \times d}$输出$\mathbf{X} + \mathbf{P}$，
-矩阵第$i$行、第$2j$列和$2j+1$列上的元素为：
+$\mathbf{P} \in \mathbb{R}^{n \times d}$输出$\mathbf{X} + \mathbf{P}$，矩阵第$i$行、第$2j$列和$2j+1$列上的元素为：
 
 $$\begin{aligned} p_{i, 2j} &= \sin\left(\frac{i}{10000^{2j/d}}\right),\\p_{i, 2j+1} &= \cos\left(\frac{i}{10000^{2j/d}}\right).\end{aligned}$$
 
@@ -150,8 +136,7 @@ d2l.plot(d2l.arange(num_steps), P[0, :, 6:10].T, xlabel='Row (position)',
 
 ### 绝对位置信息
 
-为了明白沿着编码维度单调降低的频率与绝对位置信息的关系，
-让我们打印出$0, 1, \ldots, 7$的**二进制表示**形式。
+为了明白沿着编码维度单调降低的频率与绝对位置信息的关系，让我们打印出$0, 1, \ldots, 7$的**二进制表示**形式。
 正如所看到的，每个数字、每两个数字和每四个数字上的比特值
 在第一个最低位、第二个最低位和第三个最低位上分别交替。
 
@@ -160,8 +145,7 @@ for i in range(8):
     print(f'{i}的二进制是：{i:>03b}')
 ```
 
-在二进制表示中，较高比特位的交替频率低于较低比特位，
-与下面的热图所示相似，只是位置编码通过使用三角函数**在编码维度上降低频率**。
+在二进制表示中，较高比特位的交替频率低于较低比特位，与下面的热图所示相似，只是位置编码通过使用三角函数**在编码维度上降低频率**。
 由于输出是浮点数，因此此类连续表示比二进制表示法更节省空间。
 
 ```python
@@ -176,8 +160,7 @@ d2l.show_heatmaps(P, xlabel='Column (encoding dimension)',
 这是因为对于任何确定的位置偏移$\delta$，位置$i + \delta$处
 的位置编码可以线性投影位置$i$处的位置编码来表示。
 
-这种投影的数学解释是，令$\omega_j = 1/10000^{2j/d}$，
-对于任何确定的位置偏移$\delta$，
+这种投影的数学解释是，令$\omega_j = 1/10000^{2j/d}$，对于任何确定的位置偏移$\delta$，
  [公式](06-自注意力和位置编码(self-attention-and-positional-encoding).md#eq_positional-encoding-def)中的任何一对
 $(p_{i, 2j}, p_{i, 2j+1})$都可以线性投影到
 $(p_{i+\delta, 2j}, p_{i+\delta, 2j+1})$：
@@ -187,7 +170,7 @@ $$\begin{aligned}
 \begin{bmatrix} p_{i, 2j} \\  p_{i, 2j+1} \\ \end{bmatrix}\\
 =&\begin{bmatrix} \cos(\delta \omega_j) \sin(i \omega_j) + \sin(\delta \omega_j) \cos(i \omega_j) \\  -\sin(\delta \omega_j) \sin(i \omega_j) + \cos(\delta \omega_j) \cos(i \omega_j) \\ \end{bmatrix}\\
 =&\begin{bmatrix} \sin\left((i+\delta) \omega_j\right) \\  \cos\left((i+\delta) \omega_j\right) \\ \end{bmatrix}\\
-=& 
+=&
 \begin{bmatrix} p_{i+\delta, 2j} \\  p_{i+\delta, 2j+1} \\ \end{bmatrix},
 \end{aligned}$$
 

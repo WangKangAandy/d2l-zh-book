@@ -4,19 +4,15 @@
 
  [注意力汇聚：Nadaraya-Watson 核回归](02-注意力汇聚：Nadaraya-Watson 核回归.md#sec_nadaraya-watson)使用了高斯核来对查询和键之间的关系建模。
  [公式](02-注意力汇聚：Nadaraya-Watson 核回归.md#eq_nadaraya-watson-gaussian)中的
-高斯核指数部分可以视为*注意力评分函数*（attention scoring function），
-简称*评分函数*（scoring function），
-然后把这个函数的输出结果输入到softmax函数中进行运算。
+高斯核指数部分可以视为*注意力评分函数*（attention scoring function），简称*评分函数*（scoring function），然后把这个函数的输出结果输入到softmax函数中进行运算。
 通过上述步骤，将得到与键对应的值的概率分布（即注意力权重）。
 最后，注意力汇聚的输出就是基于这些注意力权重的值的加权和。
 
 从宏观来看，上述算法可以用来实现
  [图](01-注意力提示(attention-cues).md#fig_qkv)中的注意力机制框架。
  [图](03-注意力评分函数(attention-scoring-functions).md#fig_attention_output)说明了
-如何将注意力汇聚的输出计算成为值的加权和，
-其中$a$表示注意力评分函数。
-由于注意力权重是概率分布，
-因此加权和其本质上是加权平均值。
+如何将注意力汇聚的输出计算成为值的加权和，其中$a$表示注意力评分函数。
+由于注意力权重是概率分布，因此加权和其本质上是加权平均值。
 
 ![计算注意力汇聚的输出为值的加权和](../img/attention-output.svg)
 
@@ -27,8 +23,7 @@
 用数学语言描述，假设有一个查询
 $\mathbf{q} \in \mathbb{R}^q$和
 $m$个“键－值”对
-$(\mathbf{k}_1, \mathbf{v}_1), \ldots, (\mathbf{k}_m, \mathbf{v}_m)$，
-其中$\mathbf{k}_i \in \mathbb{R}^k$，$\mathbf{v}_i \in \mathbb{R}^v$。
+$(\mathbf{k}_1, \mathbf{v}_1), \ldots, (\mathbf{k}_m, \mathbf{v}_m)$，其中$\mathbf{k}_i \in \mathbb{R}^k$，$\mathbf{v}_i \in \mathbb{R}^v$。
 注意力汇聚函数$f$就被表示成值的加权和：
 
 $$f(\mathbf{q}, (\mathbf{k}_1, \mathbf{v}_1), \ldots, (\mathbf{k}_m, \mathbf{v}_m)) = \sum_{i=1}^m \alpha(\mathbf{q}, \mathbf{k}_i) \mathbf{v}_i \in \mathbb{R}^v,$$
@@ -36,8 +31,7 @@ $$f(\mathbf{q}, (\mathbf{k}_1, \mathbf{v}_1), \ldots, (\mathbf{k}_m, \mathbf{v}_
 <a id="eq_attn-pooling"></a>
 
 其中查询$\mathbf{q}$和键$\mathbf{k}_i$的注意力权重（标量）
-是通过注意力评分函数$a$将两个向量映射成标量，
-再经过softmax运算得到的：
+是通过注意力评分函数$a$将两个向量映射成标量，再经过softmax运算得到的：
 
 $$\alpha(\mathbf{q}, \mathbf{k}_i) = \mathrm{softmax}(a(\mathbf{q}, \mathbf{k}_i)) = \frac{\exp(a(\mathbf{q}, \mathbf{k}_i))}{\sum_{j=1}^m \exp(a(\mathbf{q}, \mathbf{k}_j))} \in \mathbb{R}.$$
 
@@ -57,14 +51,10 @@ from torch import nn
 
 正如上面提到的，softmax操作用于输出一个概率分布作为注意力权重。
 在某些情况下，并非所有的值都应该被纳入到注意力汇聚中。
-例如，为了在 [机器翻译与数据集](../09-现代循环神经网络/05-机器翻译与数据集(machine-translation-and-dataset).md#sec_machine_translation)中高效处理小批量数据集，
-某些文本序列被填充了没有意义的特殊词元。
-为了仅将有意义的词元作为值来获取注意力汇聚，
-可以指定一个有效序列长度（即词元的个数），
-以便在计算softmax时过滤掉超出指定范围的位置。
+例如，为了在 [机器翻译与数据集](../09-现代循环神经网络/05-机器翻译与数据集(machine-translation-and-dataset).md#sec_machine_translation)中高效处理小批量数据集，某些文本序列被填充了没有意义的特殊词元。
+为了仅将有意义的词元作为值来获取注意力汇聚，可以指定一个有效序列长度（即词元的个数），以便在计算softmax时过滤掉超出指定范围的位置。
 下面的`masked_softmax`函数
-实现了这样的*掩蔽softmax操作*（masked softmax operation），
-其中任何超出有效长度的位置都被掩蔽并置为0。
+实现了这样的*掩蔽softmax操作*（masked softmax operation），其中任何超出有效长度的位置都被掩蔽并置为0。
 
 ```python
 #@save
@@ -85,9 +75,7 @@ def masked_softmax(X, valid_lens):
         return nn.functional.softmax(X.reshape(shape), dim=-1)
 ```
 
-为了**演示此函数是如何工作**的，
-考虑由两个$2 \times 4$矩阵表示的样本，
-这两个样本的有效长度分别为$2$和$3$。
+为了**演示此函数是如何工作**的，考虑由两个$2 \times 4$矩阵表示的样本，这两个样本的有效长度分别为$2$和$3$。
 经过掩蔽softmax操作，超出有效长度的值都被掩蔽为0。
 
 ```python
@@ -116,9 +104,7 @@ $$a(\mathbf q, \mathbf k) = \mathbf w_v^\top \text{tanh}(\mathbf W_q\mathbf q + 
 其中可学习的参数是$\mathbf W_q\in\mathbb R^{h\times q}$、
 $\mathbf W_k\in\mathbb R^{h\times k}$和
 $\mathbf w_v\in\mathbb R^{h}$。
-如 [公式](03-注意力评分函数(attention-scoring-functions).md#eq_additive-attn)所示，
-将查询和键连结起来后输入到一个多层感知机（MLP）中，
-感知机包含一个隐藏层，其隐藏单元数是一个超参数$h$。
+如 [公式](03-注意力评分函数(attention-scoring-functions).md#eq_additive-attn)所示，将查询和键连结起来后输入到一个多层感知机（MLP）中，感知机包含一个隐藏层，其隐藏单元数是一个超参数$h$。
 通过使用$\tanh$作为激活函数，并且禁用偏置项。
 
 下面来实现加性注意力。
@@ -150,9 +136,7 @@ class AdditiveAttention(nn.Module):
         return torch.bmm(self.dropout(self.attention_weights), values)
 ```
 
-用一个小例子来**演示上面的`AdditiveAttention`类**，
-其中查询、键和值的形状为（批量大小，步数或词元序列长度，特征大小），
-实际输出为$(2,1,20)$、$(2,10,2)$和$(2,10,4)$。
+用一个小例子来**演示上面的`AdditiveAttention`类**，其中查询、键和值的形状为（批量大小，步数或词元序列长度，特征大小），实际输出为$(2,1,20)$、$(2,10,2)$和$(2,10,4)$。
 注意力汇聚输出的形状为（批量大小，查询的步数，值的维度）。
 
 ```python
@@ -168,8 +152,7 @@ attention.eval()
 attention(queries, keys, values, valid_lens)
 ```
 
-尽管加性注意力包含了可学习的参数，但由于本例子中每个键都是相同的，
-所以**注意力权重**是均匀的，由指定的有效长度决定。
+尽管加性注意力包含了可学习的参数，但由于本例子中每个键都是相同的，所以**注意力权重**是均匀的，由指定的有效长度决定。
 
 ```python
 d2l.show_heatmaps(d2l.reshape(attention.attention_weights, (1, 1, 2, 10)),
@@ -178,21 +161,13 @@ d2l.show_heatmaps(d2l.reshape(attention.attention_weights, (1, 1, 2, 10)),
 
 ## **缩放点积注意力**
 
-使用点积可以得到计算效率更高的评分函数，
-但是点积操作要求查询和键具有相同的长度$d$。
-假设查询和键的所有元素都是独立的随机变量，
-并且都满足零均值和单位方差，
-那么两个向量的点积的均值为$0$，方差为$d$。
-为确保无论向量长度如何，
-点积的方差在不考虑向量长度的情况下仍然是$1$，
-我们再将点积除以$\sqrt{d}$，
-则*缩放点积注意力*（scaled dot-product attention）评分函数为：
+使用点积可以得到计算效率更高的评分函数，但是点积操作要求查询和键具有相同的长度$d$。
+假设查询和键的所有元素都是独立的随机变量，并且都满足零均值和单位方差，那么两个向量的点积的均值为$0$，方差为$d$。
+为确保无论向量长度如何，点积的方差在不考虑向量长度的情况下仍然是$1$，我们再将点积除以$\sqrt{d}$，则*缩放点积注意力*（scaled dot-product attention）评分函数为：
 
 $$a(\mathbf q, \mathbf k) = \mathbf{q}^\top \mathbf{k}  /\sqrt{d}.$$
 
-在实践中，我们通常从小批量的角度来考虑提高效率，
-例如基于$n$个查询和$m$个键－值对计算注意力，
-其中查询和键的长度为$d$，值的长度为$v$。
+在实践中，我们通常从小批量的角度来考虑提高效率，例如基于$n$个查询和$m$个键－值对计算注意力，其中查询和键的长度为$d$，值的长度为$v$。
 查询$\mathbf Q\in\mathbb R^{n\times d}$、
 键$\mathbf K\in\mathbb R^{m\times d}$和
 值$\mathbf V\in\mathbb R^{m\times v}$的缩放点积注意力是：
@@ -223,8 +198,7 @@ class DotProductAttention(nn.Module):
         return torch.bmm(self.dropout(self.attention_weights), values)
 ```
 
-为了**演示上述的`DotProductAttention`类**，
-我们使用与先前加性注意力例子中相同的键、值和有效长度。
+为了**演示上述的`DotProductAttention`类**，我们使用与先前加性注意力例子中相同的键、值和有效长度。
 对于点积操作，我们令查询的特征维度与键的特征维度大小相同。
 
 ```python
@@ -234,8 +208,7 @@ attention.eval()
 attention(queries, keys, values, valid_lens)
 ```
 
-与加性注意力演示相同，由于键包含的是相同的元素，
-而这些元素无法通过任何查询进行区分，因此获得了**均匀的注意力权重**。
+与加性注意力演示相同，由于键包含的是相同的元素，而这些元素无法通过任何查询进行区分，因此获得了**均匀的注意力权重**。
 
 ```python
 d2l.show_heatmaps(d2l.reshape(attention.attention_weights, (1, 1, 2, 10)),

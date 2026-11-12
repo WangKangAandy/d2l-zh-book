@@ -97,8 +97,7 @@ $$\begin{aligned}
 
 在这里，操作是按照坐标顺序应用。
 也就是说，$\mathbf{v}^2$有条目$v_i^2$。
-同样，$\frac{1}{\sqrt{v}}$有条目$\frac{1}{\sqrt{v_i}}$，
-并且$\mathbf{u} \cdot \mathbf{v}$有条目$u_i v_i$。
+同样，$\frac{1}{\sqrt{v}}$有条目$\frac{1}{\sqrt{v_i}}$，并且$\mathbf{u} \cdot \mathbf{v}$有条目$u_i v_i$。
 与之前一样，$\eta$是学习率，$\epsilon$是一个为维持数值稳定性而添加的常数，用来确保我们不会除以$0$。
 最后，我们初始化$\mathbf{s}_0 = \mathbf{0}$。
 

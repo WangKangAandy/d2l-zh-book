@@ -42,7 +42,7 @@ import os
 如果要在Kaggle比赛中使用完整的数据集，则需要将下面的`demo`变量更改为`False`。
 
 ```python
-#@save 
+#@save
 d2l.DATA_HUB['dog_tiny'] = (d2l.DATA_URL + 'kaggle_dog_tiny.zip',
                             '0cb91d09b814ecdc07b50f31f8dcad3e81d6a86d')
 
@@ -213,7 +213,7 @@ def train(net, train_iter, valid_iter, num_epochs, lr, wd, devices, lr_period,
             metric.add(l, labels.shape[0])
             timer.stop()
             if (i + 1) % (num_batches // 5) == 0 or i == num_batches - 1:
-                animator.add(epoch + (i + 1) / num_batches, 
+                animator.add(epoch + (i + 1) / num_batches,
                              (metric[0] / metric[1], None))
         measures = f'train loss {metric[0] / metric[1]:.3f}'
         if valid_iter is not None:
@@ -230,8 +230,7 @@ def train(net, train_iter, valid_iter, num_epochs, lr, wd, devices, lr_period,
 
 现在我们可以训练和验证模型了，以下超参数都是可调的。
 例如，我们可以增加迭代轮数。
-另外，由于`lr_period`和`lr_decay`分别设置为2和0.9，
-因此优化算法的学习速率将在每2个迭代后乘以0.9。
+另外，由于`lr_period`和`lr_decay`分别设置为2和0.9，因此优化算法的学习速率将在每2个迭代后乘以0.9。
 
 ```python
 devices, num_epochs, lr, wd = d2l.try_all_gpus(), 10, 1e-4, 1e-4

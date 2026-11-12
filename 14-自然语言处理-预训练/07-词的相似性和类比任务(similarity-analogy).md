@@ -140,9 +140,7 @@ get_similar_tokens('beautiful', 3, glove_6b50d)
 “man”是对“woman”的类比，“son”是对“daughter”的类比。
 具体来说，词类比任务可以定义为：
 对于单词类比$a : b :: c : d$，给出前三个词$a$、$b$和$c$，找到$d$。
-用$\text{vec}(w)$表示词$w$的向量，
-为了完成这个类比，我们将找到一个词，
-其向量与$\text{vec}(c)+\text{vec}(b)-\text{vec}(a)$的结果最相似。
+用$\text{vec}(w)$表示词$w$的向量，为了完成这个类比，我们将找到一个词，其向量与$\text{vec}(c)+\text{vec}(b)-\text{vec}(a)$的结果最相似。
 
 ```python
 def get_analogy(token_a, token_b, token_c, embed):
